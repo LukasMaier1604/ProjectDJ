@@ -10,7 +10,7 @@ public class App {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					DoodleApp frame = new DoodleApp();
+					DoodleAPP frame = new DoodleAPP();
 					frame.setVisible(true);
 				}catch(Exception e) {
 					e.printStackTrace();

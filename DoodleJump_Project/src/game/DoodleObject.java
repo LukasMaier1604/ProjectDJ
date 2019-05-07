@@ -1,5 +1,7 @@
 package game;
 
+import java.awt.Point;
+
 public class DoodleObject {
 
 	protected Point point;
@@ -7,15 +9,16 @@ public class DoodleObject {
 	protected int height;
 	private String imgPath;
 
-}
+
 
 	public DoodleObject(){
 	}
 
-	public DoodleObject( Point point, int width, int height){
+	public DoodleObject( Point point, int width, int height, String imgPath){
 		this.point = point;
 		this.width = width;
 		this.height = height;
+		this.imgPath =imgPath;
 
 	}
 
@@ -48,51 +51,15 @@ public class DoodleObject {
 		this.height = height;
 	}
 
-	/**
-	* Returns value of imgPath
-	* @return
-	*/
+	
 	public String getImgPath() {
 		return imgPath;
 	}
 
-	/**
-	* Sets new value of imgPath
-	* @param
-	*/
+	
 	public void setImgPath(String imgPath) {
 		this.imgPath = imgPath;
 	}
 
-	/**
-	* Returns value of t
-	* @return
-	*/
-	public DoodleObjec getT() {
-		return t;
-	}
-
-	/**
-	* Sets new value of t
-	* @param
-	*/
-	public void setT(DoodleObjec t) {
-		this.t = t;
-	}
-
-	/**
-	* Returns value of t
-	* @return
-	*/
-	public DoodleObjec getT() {
-		return t;
-	}
-
-	/**
-	* Sets new value of t
-	* @param
-	*/
-	public void setT(DoodleObjec t) {
-		this.t = t;
-	}
+	
 }
