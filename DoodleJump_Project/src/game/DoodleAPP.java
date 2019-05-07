@@ -13,14 +13,14 @@ public class DoodleAPP extends JFrame{
 	
 	public DoodleAPP() {
 		
-		JPanel panel = new JPanel();
-		panel.setBorder(new EmptyBorder(20, 20, 20, 20));
-		panel.setBackground(Color.RED);
-		getContentPane().add(panel, BorderLayout.CENTER);
-		panel.setLayout(new BorderLayout(0, 0));
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(20, 20, 20, 20));
+		contentPane.setBackground(Color.RED);
+		getContentPane().add(contentPane, BorderLayout.CENTER);
+		contentPane.setLayout(new BorderLayout(0, 0));
 		
 		JPanel panel_1 = new JPanel();
-		panel.add(panel_1, BorderLayout.CENTER);
+		contentPane.add(panel_1, BorderLayout.CENTER);
 	}
 	
 	

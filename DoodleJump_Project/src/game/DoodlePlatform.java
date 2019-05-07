@@ -9,5 +9,7 @@ public class DoodlePlatform extends DoodleObject{
 		super(point, width, height, imgPath);
 		
 	}
+	
+	
 
 }

@@ -8,9 +8,18 @@ public class DoodleBackground{
 	private int width;
 	private int height;
 	private DoodlePlayer player;
+	private ArrayList<DoodlePlatform> listPlat;
 	
 		
 	
+	public DoodlePlayer getPlayer() {
+		return player;
+	}
+
+	public ArrayList<DoodlePlatform> getListPlat() {
+		return listPlat;
+	}
+
 	public DoodleBackground(Point bottomPoint, int width, int height, DoodlePlayer player) {
 		
 		this.bottomPoint = bottomPoint;
