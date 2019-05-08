@@ -39,5 +39,12 @@ public class Engine {
 		}
 		return false;
 	}
+	public boolean gameOver() {
+		if (umgebung.bottomReached(player.point.y)) {
+			return true;
+		}
+		return false;
+	}
+	
 
 }
