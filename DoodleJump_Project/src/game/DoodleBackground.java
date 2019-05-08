@@ -8,25 +8,45 @@ public class DoodleBackground{
 	private int width;
 	private int height;
 	private DoodlePlayer player;
-	private ArrayList<DoodlePlatform> listPlat;
+	private ArrayList<DoodleObject> objects;					// zur Darstellung muss der springende Punkt auch in die Liste
+																// einfache if/not-Abfrage für die Plattformen später
 	
-		
+	public DoodleBackground(int width, int height) {
+		this.width = width;
+		this.height = height;
+		objects = new ArrayList<>();
+
+		//für die Startposition
+		player = new DoodlePlayer( new Point(width/2, height), 25, 25, "img/Kreis_DoodleJump.png", "Doodle");
+		objects.add(player);
+	}
 	
 	public DoodlePlayer getPlayer() {
 		return player;
 	}
 
-	public ArrayList<DoodlePlatform> getListPlat() {
-		return listPlat;
+	public ArrayList<DoodleObject> getObjects() {
+		return objects;
 	}
 
-	public DoodleBackground(Point bottomPoint, int width, int height, DoodlePlayer player) {
-		
-		this.bottomPoint = bottomPoint;
-		this.player = player;
-		this.width = width;
-		this.height = height;
+	public int getWidth() {
+		return width;
 	}
+	
+	public int getHeight() {
+		return height;
+	}
+	
+	// warum braucht es den Punkt links-unten? 
+//	public DoodleBackground(Point bottomPoint, int width, int height, DoodlePlayer player) {
+//		
+//		this.bottomPoint = bottomPoint;
+//		this.player = player;
+//		this.width = width;
+//		this.height = height;
+//	}
+	
+	
 	
 	public void teleportToBorder() {
 		Point newPosition;
@@ -56,7 +76,7 @@ public class DoodleBackground{
 		int y = player.point.y;
 		if (score <= 100){
 			for (int i = 0; i < 3; i++) {
-				plat = new DoodlePlatform((new Point(),"");
+				plat = new DoodlePlatform(new Point(),"");
 			}
 		}
 		if (score >= 100){
