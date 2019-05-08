@@ -16,7 +16,7 @@ public class Engine {
 	
 	public boolean checkCollision() {
 		for(DoodlePlatform plat : plat) {
-			if(player.point.y == plat.point.y 
+			if(player.point.y == (plat.point.y + plat.height) 
 					&& (player.point.x + player.width) > plat.point.x
 					&& player.point.x < (plat.point.x + plat.width)) {
 				return true;
@@ -30,7 +30,7 @@ public class Engine {
 	
 	public boolean platformActive() {
 		for(DoodlePlatform plat : plat) {
-			if (umgebung.bottomReached(plat.point.y + plat.height)) {
+			if (umgebung.bottomReached(plat.point.y - plat.height)) {
 				return false;
 			}
 			if ((plat.point.y - plat.height - 1) == player.point.y || (plat.point.y - plat.height - 1) > player.point.y) {
