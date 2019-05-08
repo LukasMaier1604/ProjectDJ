@@ -26,7 +26,6 @@ public class DoodleBackground{
 		this.player = player;
 		this.width = width;
 		this.height = height;
-		this.player = player;
 	}
 	
 	public void teleportToBorder() {
@@ -49,6 +48,26 @@ public class DoodleBackground{
 		}
 		else {
 			return false;
+		}
+		
+	}
+	public void generateRadomPlatform(int score) {
+		DoodlePlatform plat;
+		int y = player.point.y;
+		if (score <= 100){
+			for (int i = 0; i < 3; i++) {
+				plat = new DoodlePlatform((new Point(),"");
+			}
+		}
+		if (score >= 100){
+			for (int i = 0; i < 2; i++) {
+				
+			}
+		}
+		if (score > 150){
+			for (int i = 0; i < 1; i++) {
+				
+			}
 		}
 	}
 	

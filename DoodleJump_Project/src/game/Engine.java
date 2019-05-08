@@ -3,12 +3,13 @@ package game;
 import java.util.ArrayList;
 
 public class Engine {
+	private DoodleAPP app;
 	private DoodlePlayer player;
 	private ArrayList<DoodlePlatform> plat;
 	private DoodleBackground umgebung;
 	
-	public Engine (DoodleBackground umgebung) {
-		this.umgebung = umgebung;
+	public Engine (DoodleAPP app) {
+		this.umgebung = app.getUmgebung();
 		this.plat = umgebung.getListPlat();
 		this.player = umgebung.getPlayer();
 	}
@@ -29,8 +30,14 @@ public class Engine {
 	
 	public boolean platformVisible() {
 		for(DoodlePlatform plat : plat) {
-			if (DoodleBackground.bottomReached(plat.point.y + plat.height)
+			if (umgebung.bottomReached(plat.point.y + plat.height)) {
+				return false;
+			}
+			if ((plat.point.y + plat.height + 1) == player.point.y || (plat.point.y + plat.height + 1) > player.point.y) {
+				return true;
+			}
 		}
+		return false;
 	}
 
 }
