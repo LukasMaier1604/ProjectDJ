@@ -8,7 +8,7 @@ public class DoodlePlayer extends DoodleObject{
 	private String name;
  
 	
-	public DoodlePlayer (Point point, int width, int height, String imgPath, DoodleBackground umgebung, String name) {
+	public DoodlePlayer (Point point, int width, int height, String imgPath, String name) {
 		super (point,width,height,imgPath);
 		this.name = name;
 	}

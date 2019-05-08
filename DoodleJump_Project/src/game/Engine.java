@@ -28,12 +28,12 @@ public class Engine {
 		return false;
 	}
 	
-	public boolean platformVisible() {
+	public boolean platformActive() {
 		for(DoodlePlatform plat : plat) {
 			if (umgebung.bottomReached(plat.point.y + plat.height)) {
 				return false;
 			}
-			if ((plat.point.y + plat.height + 1) == player.point.y || (plat.point.y + plat.height + 1) > player.point.y) {
+			if ((plat.point.y - plat.height - 1) == player.point.y || (plat.point.y - plat.height - 1) > player.point.y) {
 				return true;
 			}
 		}
