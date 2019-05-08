@@ -4,7 +4,7 @@ import java.awt.EventQueue;
 
 public class App {
 
-	
+	private static DoodleAPP spiel;
 	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {

@@ -10,14 +10,15 @@ import java.awt.GridLayout;
 public class DoodleAPP extends JFrame{
 	
 	private JPanel contentPane;
+	private Overlay myOverlay;
 	private DoodleBackground umgebung;
 	
 
 	
 	public DoodleAPP() {
-		setResizable(false);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
+		umgebung = new DoodleBackground(100, 150);								// OPEN TO DO
+
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setBackground(Color.WHITE);
@@ -26,7 +27,15 @@ public class DoodleAPP extends JFrame{
 		JPanel panel_1 = new JPanel();
 		panel_1.setBackground(Color.ORANGE);
 		contentPane.add(panel_1, BorderLayout.CENTER);
-		umgebung = new DoodleBackground(250, 700);								// OPEN TO DO
+
+		setResizable(false);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(10, 10, 350, 500);
+		
+//		myOverlay = new Overlay(umgebung);								//ähnlich dem Canvas, funktioniert hier noch nicht. bin noch 
+//		panel_1.add(myOverlay);											//nich sicher ob, dass bei den Plattformen helfen kann.
+																		// dazu: Klasse App kann noch nicht gestartet werden. IMG müsste da sein
+		
 	}
 
 
