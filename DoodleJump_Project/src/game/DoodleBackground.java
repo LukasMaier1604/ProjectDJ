@@ -15,7 +15,7 @@ public class DoodleBackground{
 		this.width = width;
 		this.height = height;
 		objects = new ArrayList<>();
-
+		bottomPoint = new Point(0,0);
 		//für die Startposition
 		player = new DoodlePlayer( new Point(width/2, height), 25, 25, "img/Kreis_DoodleJump.png", "Doodle");
 		objects.add(player);
@@ -73,20 +73,22 @@ public class DoodleBackground{
 	}
 	public void generateRadomPlatform(int score) {
 		DoodlePlatform plat;
-		int y = player.point.y;
 		if (score <= 100){
 			for (int i = 0; i < 3; i++) {
-				plat = new DoodlePlatform(new Point(),"");
+				plat = new DoodlePlatform(new Point ((int)(bottomPoint.x* Math.random()),(int)(bottomPoint.y * Math.random() + height + 20)),"");
+				objects.add(plat);
 			}
 		}
 		if (score >= 100){
 			for (int i = 0; i < 2; i++) {
-				
-			}
+				plat = new DoodlePlatform(new Point ((int)(bottomPoint.x* Math.random()),(int)(bottomPoint.y * Math.random() + height + 20)),"");
+				objects.add(plat);
+				}
 		}
 		if (score > 150){
 			for (int i = 0; i < 1; i++) {
-				
+				plat = new DoodlePlatform(new Point ((int)(bottomPoint.x* Math.random()),(int)(bottomPoint.y * Math.random() + height + 20)),"");
+				objects.add(plat);
 			}
 		}
 	}

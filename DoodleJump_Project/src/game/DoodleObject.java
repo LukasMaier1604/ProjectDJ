@@ -74,6 +74,15 @@ public class DoodleObject {
 	public void setImgPath(String imgPath) {
 		this.imgPath = imgPath;
 	}
+	
+	private void loadImage() {
+		try {
+			img = ImageIO.read( new File( imgPath ) );
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 
 	
 }
