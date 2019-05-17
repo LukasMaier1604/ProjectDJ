@@ -5,13 +5,11 @@ import java.util.ArrayList;
 public class Engine {
 	private DoodleAPP app;
 	private DoodlePlayer player;
-	private ArrayList<DoodleObject> objectsInactive;
 	private DoodleBackground umgebung;
 	
 	public Engine (DoodleAPP app) {
 		this.app = app;
 		this.umgebung = app.getUmgebung();
-		this.objectsInactive = umgebung.getObjects();
 		this.player = umgebung.getPlayer();
 	}
 	
@@ -29,10 +27,6 @@ public class Engine {
 		}
 		return false;
 	}
-	
-	public ArrayList<DoodleObject> getObjectsInactive() {
-		return objectsInactive;
-	}
 
 	public boolean platformActive(ArrayList<DoodleObject> objectsActive, ArrayList<DoodleObject> objectsInactive) {
 		for (DoodleObject inactiveObject : objectsInactive) {
@@ -44,6 +38,7 @@ public class Engine {
 		for(DoodleObject object : objectsActive) {
 			if (umgebung.bottomReached(object.point.y - object.height) && !object.equals(player)) {
 				objectsActive.remove(object);
+				objectsInactive.remove(object);
 				return false;
 			}
 		}
@@ -55,10 +50,6 @@ public class Engine {
 //		}
 //		return false;
 //	}
-	public void updateObjects(ArrayList<DoodleObject> xObjects) {
-		objectsInactive = umgebung.getObjects();
-		xObjects = this.objectsInactive;
-	}
 	
 
 }

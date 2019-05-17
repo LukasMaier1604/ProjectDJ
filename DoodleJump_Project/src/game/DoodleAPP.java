@@ -33,7 +33,7 @@ public class DoodleAPP extends JFrame{
 		JPanel panel_1 = new JPanel();
 		panel_1.setBackground(Color.ORANGE);
 		contentPane.add(panel_1, BorderLayout.CENTER);
-
+		
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(10, 10, 350, 500);
@@ -42,7 +42,7 @@ public class DoodleAPP extends JFrame{
 		myOverlay = new Overlay(umgebung);								//ähnlich dem Canvas, funktioniert hier noch nicht. bin noch 
 		panel_1.add(myOverlay);											//nich sicher ob, dass bei den Plattformen helfen kann.
 																		// dazu: Klasse App kann noch nicht gestartet werden. IMG müsste da sein
-		this.objects = engine.getObjectsInactive();
+		this.objects = umgebung.getObjects();
 //		for(int i =0; i<= objects.size(); i++) {
 //			objectsActive.add(objects.get(i));
 //		}
@@ -53,7 +53,7 @@ public class DoodleAPP extends JFrame{
 //		objectsActive.addAll(objects);
 		
 		
-		
+		setEngine();
 		
 		
 		
@@ -82,12 +82,14 @@ public class DoodleAPP extends JFrame{
 	
 	public void addPlatform() {
 		umgebung.generateRadomPlatform(score);
-		engine.updateObjects(objects);
-		System.out.println(engine.platformActive(this.objectsActive, this.objects));
+		System.out.println(engine.platformActive(this.objectsActive, umgebung.getObjects()));
 	}
 	
 	public ArrayList<DoodleObject> getObjects(){
 		return objects;
+	}
+	public void setEngine() {
+		engine = new Engine (this);
 	}
 	
 	
