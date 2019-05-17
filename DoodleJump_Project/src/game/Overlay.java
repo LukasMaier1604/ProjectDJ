@@ -2,6 +2,8 @@ package game;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Graphics;
+import java.util.ArrayList;
 
 import javax.swing.JPanel;
 
@@ -14,9 +16,24 @@ public class Overlay extends JPanel{
 		bg = background;
 		this.setBackground(Color.GREEN);
 		setArea();
+		
 	}
 	
 	public void setArea() {
 	this.setPreferredSize( new Dimension( bg.getWidth(), bg.getHeight() ) );
 	}
+	
+	public void paintComponent(Graphics g, ArrayList<DoodleObject> objects) {
+		super.paintComponent(g);
+		
+		for(DoodleObject o : objects) {
+			g.setColor(Color.WHITE);
+			g.drawImage(o.getImage(), o.getPoint().x, o.getPoint().y, o.getWidth(), o.getHeight(), null);
+		}
+		
+	}
+	
+	
+	
+	
 }

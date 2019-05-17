@@ -83,6 +83,10 @@ public class DoodleObject {
 			e.printStackTrace();
 		}
 	}
+	public Image getImage() {
+		return img;
+	}
+	
 
 	
 }

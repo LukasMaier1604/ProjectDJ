@@ -34,7 +34,7 @@ public class Engine {
 		return objectsInactive;
 	}
 
-	public boolean platformActive(ArrayList<DoodleObject> objectsActive) {
+	public boolean platformActive(ArrayList<DoodleObject> objectsActive, ArrayList<DoodleObject> objectsInactive) {
 		for (DoodleObject inactiveObject : objectsInactive) {
 			if ((inactiveObject.point.y - inactiveObject.height - 1) >= player.point.y && !inactiveObject.equals(player)) {
 				objectsActive.add(inactiveObject);
@@ -49,11 +49,15 @@ public class Engine {
 		}
 		return false;
 	}
-	public boolean gameOver() {
-		if (umgebung.bottomReached(player.point.y)) {
-			return true;
-		}
-		return false;
+//	public boolean gameOver() {
+//		if (umgebung.bottomReached(player.point.y)) {
+//			return true;
+//		}
+//		return false;
+//	}
+	public void updateObjects(ArrayList<DoodleObject> xObjects) {
+		objectsInactive = umgebung.getObjects();
+		xObjects = this.objectsInactive;
 	}
 	
 

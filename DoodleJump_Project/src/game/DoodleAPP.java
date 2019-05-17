@@ -14,8 +14,9 @@ public class DoodleAPP extends JFrame{
 	private Overlay myOverlay;
 	private DoodleBackground umgebung;
 	private ArrayList<DoodleObject> objects;
-	private ArrayList<DoodleObject> objectsActive;
+	private ArrayList<DoodleObject> objectsActive; 
 	private Engine engine;
+	private int score;
 	
 	
 
@@ -42,7 +43,17 @@ public class DoodleAPP extends JFrame{
 		panel_1.add(myOverlay);											//nich sicher ob, dass bei den Plattformen helfen kann.
 																		// dazu: Klasse App kann noch nicht gestartet werden. IMG müsste da sein
 		this.objects = engine.getObjectsInactive();
-		objectsActive = objects.clone();
+//		for(int i =0; i<= objects.size(); i++) {
+//			objectsActive.add(objects.get(i));
+//		}
+		
+		
+//		objectsActive = (ArrayList<DoodleObject>) objects.clone();
+		
+//		objectsActive.addAll(objects);
+		
+		
+		
 		
 		
 		
@@ -57,6 +68,28 @@ public class DoodleAPP extends JFrame{
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 	}
+	
+	
+	
+	
+	public void movePlayer() {
+		if (engine.checkCollision(objectsActive)) {
+			addPlatform();
+//			Beschleunigung des Spielers
+		}
+		
+	}
+	
+	public void addPlatform() {
+		umgebung.generateRadomPlatform(score);
+		engine.updateObjects(objects);
+		System.out.println(engine.platformActive(this.objectsActive, this.objects));
+	}
+	
+	public ArrayList<DoodleObject> getObjects(){
+		return objects;
+	}
+	
 	
 	
 	
