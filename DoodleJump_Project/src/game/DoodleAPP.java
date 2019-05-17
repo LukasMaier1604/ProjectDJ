@@ -6,18 +6,23 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import javax.swing.border.EmptyBorder;
 import java.awt.GridLayout;
+import java.util.ArrayList;
 
 public class DoodleAPP extends JFrame{
 	
 	private JPanel contentPane;
 	private Overlay myOverlay;
 	private DoodleBackground umgebung;
+	private ArrayList<DoodleObject> objects;
+	private ArrayList<DoodleObject> objectsActive;
+	private Engine engine;
+	
 	
 
 	
 	public DoodleAPP() {
 		
-		umgebung = new DoodleBackground(100, 150);								// OPEN TO DO
+		umgebung = new DoodleBackground(400, 800);								// OPEN TO DO
 
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -32,9 +37,14 @@ public class DoodleAPP extends JFrame{
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(10, 10, 350, 500);
 		
-//		myOverlay = new Overlay(umgebung);								//ähnlich dem Canvas, funktioniert hier noch nicht. bin noch 
-//		panel_1.add(myOverlay);											//nich sicher ob, dass bei den Plattformen helfen kann.
+		
+		myOverlay = new Overlay(umgebung);								//ähnlich dem Canvas, funktioniert hier noch nicht. bin noch 
+		panel_1.add(myOverlay);											//nich sicher ob, dass bei den Plattformen helfen kann.
 																		// dazu: Klasse App kann noch nicht gestartet werden. IMG müsste da sein
+		this.objects = engine.getObjectsInactive();
+		objectsActive = objects.clone();
+		
+		
 		
 	}
 
@@ -42,6 +52,13 @@ public class DoodleAPP extends JFrame{
 	public DoodleBackground getUmgebung() {
 		return umgebung;
 	}
+	public void setMainFrame() {
+		setTitle("Doodle Jump");
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+	}
+	
+	
 	
 	
 	

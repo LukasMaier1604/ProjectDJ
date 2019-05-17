@@ -5,21 +5,23 @@ import java.util.ArrayList;
 public class Engine {
 	private DoodleAPP app;
 	private DoodlePlayer player;
-	private ArrayList<DoodleObject> objects;
+	private ArrayList<DoodleObject> objectsInactive;
 	private DoodleBackground umgebung;
 	
 	public Engine (DoodleAPP app) {
+		this.app = app;
 		this.umgebung = app.getUmgebung();
-		this.objects = umgebung.getObjects();
+		this.objectsInactive = umgebung.getObjects();
 		this.player = umgebung.getPlayer();
 	}
 	
-	public boolean checkCollision() {
+	public boolean checkCollision(ArrayList<DoodleObject> objects) {
 		for(DoodleObject object : objects) {
 			if(player.point.y == (object.point.y + object.height) 
 					&& (player.point.x + player.width) > object.point.x
 					&& player.point.x < (object.point.x + object.width) && !object.equals(player)) {
 				return true;
+				
 			}
 			else {
 				return false;
@@ -28,13 +30,21 @@ public class Engine {
 		return false;
 	}
 	
-	public boolean platformActive() {
-		for(DoodleObject object : objects) {
-			if (umgebung.bottomReached(object.point.y - object.height) && !object.equals(player)) {
-				return false;
+	public ArrayList<DoodleObject> getObjectsInactive() {
+		return objectsInactive;
+	}
+
+	public boolean platformActive(ArrayList<DoodleObject> objectsActive) {
+		for (DoodleObject inactiveObject : objectsInactive) {
+			if ((inactiveObject.point.y - inactiveObject.height - 1) >= player.point.y && !inactiveObject.equals(player)) {
+				objectsActive.add(inactiveObject);
+				objectsInactive.add(inactiveObject);
 			}
-			if ((object.point.y - object.height - 1) == player.point.y || (object.point.y - object.height - 1) > player.point.y && !object.equals(player)) {
-				return true;
+		}
+		for(DoodleObject object : objectsActive) {
+			if (umgebung.bottomReached(object.point.y - object.height) && !object.equals(player)) {
+				objectsActive.remove(object);
+				return false;
 			}
 		}
 		return false;
