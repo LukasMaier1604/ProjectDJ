@@ -17,7 +17,7 @@ public class DoodleBackground{
 		objects = new ArrayList<>();
 		bottomPoint = new Point(0,height);
 		//f�r die Startposition
-		player = new DoodlePlayer( new Point(width/2, height), 25, 25, "img/Kreis_DoodleJump.png", "Doodle");
+		player = new DoodlePlayer( new Point(width/2, height/2), 100, 100, "img/Kreis.png", "Doodle");
 		objects.add(player);
 	}
 
@@ -71,26 +71,26 @@ public class DoodleBackground{
 		}
 
 	}
-	public void generateRadomPlatform(int score) {
-		DoodlePlatform plat;
-		if (score <= 100){
-			for (int i = 0; i < 3; i++) {
-				plat = new DoodlePlatform(new Point ((int)(width * Math.random())-50,(int)(Math.random()* -20)),"");
-				objects.add(plat);
-			}
-		}
-		if (score >= 100){
-			for (int i = 0; i < 2; i++) {
-				plat = new DoodlePlatform(new Point ((int)(width * Math.random())-50,(int)(Math.random()* -20)),"");
-				objects.add(plat);
-				}
-		}
-		if (score > 150){
-			for (int i = 0; i < 1; i++) {
-				plat = new DoodlePlatform(new Point ((int)(width * Math.random())-50,(int)(Math.random()* -20)),"");
-				objects.add(plat);
-			}
-		}
-	}
+//	public void generateRadomPlatform(int score) {
+//		DoodlePlatform plat;
+//		if (score <= 100){
+//			for (int i = 0; i < 3; i++) {
+//				plat = new DoodlePlatform(new Point ((int)(width * Math.random())-50,(int)(Math.random()* -20)),"");
+//				objects.add(plat);
+//			}
+//		}
+//		if (score >= 100){
+//			for (int i = 0; i < 2; i++) {
+//				plat = new DoodlePlatform(new Point ((int)(width * Math.random())-50,(int)(Math.random()* -20)),"");
+//				objects.add(plat);
+//				}
+//		}
+//		if (score > 150){
+//			for (int i = 0; i < 1; i++) {
+//				plat = new DoodlePlatform(new Point ((int)(width * Math.random())-50,(int)(Math.random()* -20)),"");
+//				objects.add(plat);
+//			}
+//		}
+//	}
 
 }

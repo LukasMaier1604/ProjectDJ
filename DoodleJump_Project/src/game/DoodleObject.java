@@ -25,11 +25,11 @@ public class DoodleObject {
 		this.width = width;
 		this.height = height;
 		this.imgPath =imgPath;
-		doodleLoad();
+		loadImage();
 	}
 
 
-	public void doodleLoad() {
+	public void loadImage() {
 		try {
 			img = ImageIO.read( new File( imgPath ) );
 		} catch (IOException e) {
@@ -75,14 +75,14 @@ public class DoodleObject {
 		this.imgPath = imgPath;
 	}
 	
-	private void loadImage() {
-		try {
-			img = ImageIO.read( new File( imgPath ) );
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
+//	private void loadImage() {
+//		try {
+//			img = ImageIO.read( new File( imgPath ) );
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//	}
 	public Image getImage() {
 		return img;
 	}

@@ -81,8 +81,8 @@ public class DoodleAPP extends JFrame{
 	}
 	
 	public void addPlatform() {
-		umgebung.generateRadomPlatform(score);
-		System.out.println(engine.platformActive(this.objectsActive, umgebung.getObjects()));
+//		umgebung.generateRadomPlatform(score);
+//		System.out.println(engine.platformActive(this.objectsActive, umgebung.getObjects()));
 	}
 	
 	public ArrayList<DoodleObject> getObjects(){
