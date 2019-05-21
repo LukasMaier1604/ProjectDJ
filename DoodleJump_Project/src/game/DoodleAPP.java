@@ -86,6 +86,7 @@ public class DoodleAPP extends JFrame{
 		if (engine.checkCollision(objectsActive)) {
 			addPlatform();
 //			Beschleunigung des Spielers
+			
 		}
 		
 	}
@@ -100,6 +101,7 @@ public class DoodleAPP extends JFrame{
 	}
 	public void setEngine() {
 		engine = new Engine (this);
+		
 	}
 	
 	public void updateList() {

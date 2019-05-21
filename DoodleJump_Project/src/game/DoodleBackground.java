@@ -73,11 +73,12 @@ public class DoodleBackground{
 	}
 	
 	public void generateStartingPlatform() {
-		int x = 0;
+		int y = 3;
 		for (int i = 0; i < 8; i++) {
-			x+=100;
-			DoodleObject plat = new DoodlePlatform(new Point ((int)(width * Math.random()*0.9),x),"Images/blockblack.png");
-			objects.add(plat);	
+			
+			DoodleObject plat = new DoodlePlatform(new Point ((int)(width * Math.random()*0.7),y),"Images/blockblack.png");
+			objects.add(plat);
+			y+=75;
 		}
 	}
 	
