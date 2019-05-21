@@ -57,14 +57,13 @@ public class DoodleAPP extends JFrame{
 		setEngine();
 		
 		
-		
-		for (int i = 0; i < 3; i++) {
-			DoodleObject plat = new DoodlePlatform(new Point ((int)(umgebung.getWidth() * Math.random())-100,(int)(umgebung.getPlayer().getPoint().y )),"Images/blockblack.png");
-			objectsActive.add(plat);
-			System.out.println(umgebung.getPlayer().getPoint().y);
-			System.out.println(plat.getPoint().y);
+		for(int i =0; i<1;i++) {
+			umgebung.generateStartingPlatform();
+			updateList();
 		}
-		addPlatform();
+		umgebung.getConsoleObjects();
+		
+//		addPlatform();
 		
 		
 		
@@ -101,6 +100,10 @@ public class DoodleAPP extends JFrame{
 	}
 	public void setEngine() {
 		engine = new Engine (this);
+	}
+	
+	public void updateList() {
+		this.objects = umgebung.getObjects();
 	}
 	
 	

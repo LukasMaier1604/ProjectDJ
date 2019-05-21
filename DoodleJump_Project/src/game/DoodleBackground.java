@@ -71,6 +71,17 @@ public class DoodleBackground{
 		}
 
 	}
+	
+	public void generateStartingPlatform() {
+		int x = 0;
+		for (int i = 0; i < 8; i++) {
+			x+=100;
+			DoodleObject plat = new DoodlePlatform(new Point ((int)(width * Math.random()*0.9),x),"Images/blockblack.png");
+			objects.add(plat);	
+		}
+	}
+	
+	
 	public void generateRadomPlatform(int score) {
 		DoodlePlatform plat;
 		if (score <= 100){
@@ -90,6 +101,13 @@ public class DoodleBackground{
 				plat = new DoodlePlatform(new Point ((int)(width * Math.random())-50,(int)(Math.random()* -20)),"Images/blockblack.png");
 				objects.add(plat);
 			}
+		}
+		
+	}
+	public void getConsoleObjects() {
+		for(DoodleObject o: objects) {
+			System.out.println("X CORD: " + o.getPoint().x);
+			System.out.println("Y CORD: " + o.getPoint().y);
 		}
 	}
 
