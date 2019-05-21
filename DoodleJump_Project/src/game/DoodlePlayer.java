@@ -8,9 +8,10 @@ public class DoodlePlayer extends DoodleObject{
 	private String name;
  
 	
-	public DoodlePlayer (Point point, int width, int height, String imgPath, String name) {
-		super (point,width,height,imgPath);
+	public DoodlePlayer (Point point, int width, int height, String name) {
+		super (point,width,height,"Images/Kreis.png");
 		this.name = name;
+		
 	}
 	
 	
@@ -24,6 +25,13 @@ public class DoodlePlayer extends DoodleObject{
 		Point newPosition = new Point(point.x - (int) (speed*frameTime) ,point.y);
 //		DoodleBackground.teleportToBorder();
 		point = newPosition;
+		
+	}
+
+
+	@Override
+	public void move() {
+		// TODO Auto-generated method stub
 		
 	}
 	

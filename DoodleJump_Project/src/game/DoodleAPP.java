@@ -6,6 +6,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import javax.swing.border.EmptyBorder;
 import java.awt.GridLayout;
+import java.awt.Point;
 import java.util.ArrayList;
 
 public class DoodleAPP extends JFrame{
@@ -14,9 +15,9 @@ public class DoodleAPP extends JFrame{
 	private Overlay myOverlay;
 	private DoodleBackground umgebung;
 	private ArrayList<DoodleObject> objects;
-	private ArrayList<DoodleObject> objectsActive; 
+	private ArrayList<DoodleObject> objectsActive = new ArrayList<>(); 
 	private Engine engine;
-	private int score;
+	private int score = 20;
 	
 	
 
@@ -57,6 +58,16 @@ public class DoodleAPP extends JFrame{
 		
 		
 		
+		for (int i = 0; i < 3; i++) {
+			DoodleObject plat = new DoodlePlatform(new Point ((int)(umgebung.getWidth() * Math.random())-100,(int)(umgebung.getPlayer().getPoint().y )),"Images/blockblack.png");
+			objectsActive.add(plat);
+			System.out.println(umgebung.getPlayer().getPoint().y);
+			System.out.println(plat.getPoint().y);
+		}
+		addPlatform();
+		
+		
+		
 	}
 
 
@@ -81,8 +92,8 @@ public class DoodleAPP extends JFrame{
 	}
 	
 	public void addPlatform() {
-//		umgebung.generateRadomPlatform(score);
-//		System.out.println(engine.platformActive(this.objectsActive, umgebung.getObjects()));
+		umgebung.generateRadomPlatform(score);
+		System.out.println(engine.platformActive(this.objectsActive, umgebung.getObjects()));
 	}
 	
 	public ArrayList<DoodleObject> getObjects(){

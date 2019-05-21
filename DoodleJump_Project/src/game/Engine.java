@@ -36,7 +36,7 @@ public class Engine {
 			}
 		}
 		for(DoodleObject object : objectsActive) {
-			if (umgebung.bottomReached(object.point.y - object.height) && !object.equals(player)) {
+			if (umgebung.bottomReached(object.point.y ) && !object.equals(player)) {
 				objectsActive.remove(object);
 				objectsInactive.remove(object);
 				return false;

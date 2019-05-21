@@ -14,7 +14,7 @@ public class Overlay extends JPanel{
 
 	public Overlay(DoodleBackground background) {
 		bg = background;
-		this.setBackground(Color.GREEN);
+		this.setBackground(Color.WHITE);
 		setArea();
 
 	}
@@ -27,7 +27,7 @@ public class Overlay extends JPanel{
 		super.paintComponent(g);
 
 		for(DoodleObject o : bg.getObjects()) {
-//			g.setColor(Color.WHITE);
+			g.setColor(Color.BLACK);
 			g.drawImage(o.getImage(), o.getPoint().x, o.getPoint().y, o.getWidth(), o.getHeight(), null);
 		}
 		

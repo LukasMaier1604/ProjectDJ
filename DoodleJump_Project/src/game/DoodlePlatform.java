@@ -14,4 +14,10 @@ public class DoodlePlatform extends DoodleObject{
 		
 	}
 
+	@Override
+	public void move() {
+		
+		
+	}
+
 }

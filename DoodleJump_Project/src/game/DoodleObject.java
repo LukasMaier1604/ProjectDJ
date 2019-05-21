@@ -1,6 +1,7 @@
 package game;
 
 import java.awt.Point;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
@@ -8,13 +9,13 @@ import javax.imageio.ImageIO;
 
 import java.awt.Image;
 
-public class DoodleObject {
+public abstract class DoodleObject {
 
 	protected Point point;
 	protected int width;
 	protected int height;
 	private String imgPath;
-	private Image img; 
+	private BufferedImage  img; 
 
 
 	public DoodleObject(){
@@ -25,11 +26,11 @@ public class DoodleObject {
 		this.width = width;
 		this.height = height;
 		this.imgPath =imgPath;
-		loadImage();
+		loadImage(imgPath);
 	}
 
 
-	public void loadImage() {
+	public void loadImage(String imgPath) {
 		try {
 			img = ImageIO.read( new File( imgPath ) );
 		} catch (IOException e) {
@@ -87,6 +88,6 @@ public class DoodleObject {
 		return img;
 	}
 	
-
+	public abstract void move();
 	
 }

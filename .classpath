@@ -4,6 +4,7 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jre1.8.0_191"/>
 	<classpathentry kind="src" path="DoodleJump_Project/src"/>
 	<classpathentry kind="src" path="DoodleJump-master/DoodleJump-master/doodle jump/src"/>
+	<classpathentry kind="src" path="Images"/>
 	<classpathentry kind="lib" path="DoodleJump-master/DoodleJump-master/doodleJump.jar"/>
 	<classpathentry kind="output" path="DoodleJump_Project/bin"/>
 </classpath>
