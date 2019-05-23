@@ -34,6 +34,29 @@ public class DoodlePlayer extends DoodleObject{
 		// TODO Auto-generated method stub
 		
 	}
+//	public void constantBeschl (Point playerpoint) {
+//		int con = 32;
+//		while(con < 1) {
+//			con = con /2;
+//			playerpoint = new Point (this.point.x,this.point.y + con);
+//			System.out.println(playerpoint.x + " :X  " + playerpoint.y + " :Y");
+//		}
+//		while (con == 1) {
+//			con = 0;
+//			playerpoint = new Point (this.point.x,this.point.y + con);
+//			}
+//		while (con == 0) {
+//			con = -1;
+//			playerpoint = new Point (this.point.x,this.point.y + con);
+//			System.out.println(playerpoint.x + " :X  " + playerpoint.y + " :Y");
+//		}
+//		while (con < -1) {
+//			con = con *2;
+//			playerpoint = new Point (this.point.x,this.point.y + con);	
+//			System.out.println(playerpoint.x + " :X  " + playerpoint.y + " :Y");
+//		}
+//		
+//	}
 	
 
 }

@@ -6,7 +6,7 @@ public class DoodlePlatform extends DoodleObject{
 	
 	
 	public DoodlePlatform ( Point point, String imgPath) {
-		super(point, 60, 15, imgPath);							/*Standard Platform
+		super(point, 50, 7, imgPath);							/*Standard Platform
 																* aktuell 100x10
 																* Nur hier bitte anpassen
 																*/

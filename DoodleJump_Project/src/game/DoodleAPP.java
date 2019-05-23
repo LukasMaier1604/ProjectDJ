@@ -59,9 +59,11 @@ public class DoodleAPP extends JFrame{
 		
 		for(int i =0; i<1;i++) {
 			umgebung.generateStartingPlatform();
-			updateList();
 		}
 		umgebung.getConsoleObjects();
+		umgebung.playerMoveUp();
+		
+		
 		
 //		addPlatform();
 		
@@ -107,6 +109,7 @@ public class DoodleAPP extends JFrame{
 	public void updateList() {
 		this.objects = umgebung.getObjects();
 	}
+	
 	
 	
 	
