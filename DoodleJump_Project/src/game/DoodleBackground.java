@@ -53,7 +53,7 @@ public class DoodleBackground{
 	public void teleportToBorder() {
 		Point newPosition;
 		if (player.point.x == bottomPoint.x) {
-			newPosition = new Point(player.point.x + (width),player.point.y);
+			newPosition = new Point(player.point.x + (this.width),player.point.y);
 			player.point = newPosition;
 		}
 		if (player.point.x == (bottomPoint.x + width)) {
@@ -159,7 +159,7 @@ public class DoodleBackground{
 	public void moveAll () {
 		for(DoodleObject o: objects) {
 			o.move();
-			teleportToBorder();
+//			teleportToBorder();
 		}
 	}
 }

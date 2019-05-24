@@ -68,6 +68,9 @@ public class DoodleAPP extends JFrame{
 
 		for(int i =0; i<1;i++) {
 			umgebung.generateStartingPlatform();
+			for(DoodleObject o: objects) {
+				objectsActive.add(o);
+			}
 			this.keyControl();
 			
 		}
@@ -99,8 +102,8 @@ public class DoodleAPP extends JFrame{
 
 	public void jump() {
 		engine.platformActive(this.objectsActive, umgebung.getObjects());
-		if (engine.checkCollision(objectsActive)) {
-			addPlatform();
+		if (engine.checkCollision(objectsActive)==true) {
+//			addPlatform();
 			umgebung.getPlayer().setSpeed(-128); 
 //			Beschleunigung des Spielers
 
@@ -110,7 +113,7 @@ public class DoodleAPP extends JFrame{
 
 	public void addPlatform() {
 		umgebung.generateRadomPlatform(score);
-		engine.platformActive(this.objectsActive, umgebung.getObjects());
+		engine.platformActive(this.objectsActive, this.objects);
 	}
 	
 
@@ -139,7 +142,10 @@ public class DoodleAPP extends JFrame{
 			public void actionPerformed( ActionEvent e){
 				updatePosition(frames);
 				umgebung.moveAll();
+				jump();
 				myOverlay.repaint();
+				
+				
 			}
 		});
 		timer.start();
@@ -159,9 +165,14 @@ public class DoodleAPP extends JFrame{
 		for (int key : keysPressed){
 			if( key == KeyEvent.VK_LEFT){
 				umgebung.getPlayer().moveLeft(frameTime);
+//				jump();
+//				System.out.println(engine.platformActive(this.objectsActive, this.objects));
+
 			}
 			if( key == KeyEvent.VK_RIGHT){
 				umgebung.getPlayer().moveRight(frameTime);
+//				jump();
+				
 			}
 		}
 	}
