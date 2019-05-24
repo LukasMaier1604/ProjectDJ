@@ -15,9 +15,10 @@ public class Engine {
 	
 	public boolean checkCollision(ArrayList<DoodleObject> objects) {
 		for(DoodleObject object : objects) {
-			if(player.point.y == (object.point.y + object.height) 
+			if(player.point.y <= (object.point.y - object.height) 
 					&& (player.point.x + player.width) > object.point.x
 					&& player.point.x < (object.point.x + object.width) && !object.equals(player)) {
+				
 				return true;
 				
 			}
@@ -32,7 +33,7 @@ public class Engine {
 		for (DoodleObject inactiveObject : objectsInactive) {
 			if ((inactiveObject.point.y - inactiveObject.height - 1) >= player.point.y && !inactiveObject.equals(player)) {
 				objectsActive.add(inactiveObject);
-				objectsInactive.add(inactiveObject);
+				objectsInactive.remove(inactiveObject);
 			}
 		}
 		for(DoodleObject object : objectsActive) {

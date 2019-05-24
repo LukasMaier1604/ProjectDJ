@@ -159,6 +159,7 @@ public class DoodleBackground{
 	public void moveAll () {
 		for(DoodleObject o: objects) {
 			o.move();
+			teleportToBorder();
 		}
 	}
 }

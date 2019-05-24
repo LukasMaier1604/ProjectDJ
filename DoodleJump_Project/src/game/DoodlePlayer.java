@@ -4,7 +4,8 @@ import java.awt.Point;
 
 public class DoodlePlayer extends DoodleObject{
 	
-	private int speed = -128;
+	private int speed = -256;
+	private double force = 2.1; 
 	private String name;
  
 	
@@ -16,13 +17,13 @@ public class DoodlePlayer extends DoodleObject{
 	
 	
 	public void moveLeft(int frameTime) {
-		Point newPosition = new Point(point.x - (int) (speed*frameTime) ,point.y);
+		Point newPosition = new Point(point.x - (int) (force*frameTime) ,point.y);
 //		DoodleBackground.teleportToBorder(); kommt das in Controlls oder hier her?
 		point = newPosition;
 		
 	}
 	public void moveRight(int frameTime) {
-		Point newPosition = new Point(point.x - (int) (speed*frameTime) ,point.y);
+		Point newPosition = new Point(point.x + (int) (force*frameTime) ,point.y);
 //		DoodleBackground.teleportToBorder();
 		point = newPosition;
 		
@@ -32,6 +33,16 @@ public class DoodlePlayer extends DoodleObject{
 	@Override
 	public void move() {
 		// TODO Auto-generated method stub
+		System.out.println(speed);
+		if (speed < -2)speed = (int) (speed * 0.5);
+		try {
+			Thread.sleep(200);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		if(speed == -2) speed = 2;
+		if (speed >0 && speed <64) speed = speed*2;
 		this.point = newPlayerMoveUp(speed);
 		
 	}
@@ -59,11 +70,14 @@ public class DoodlePlayer extends DoodleObject{
 //		
 //	}
 	public Point newPlayerMoveUp(int speed) {
-		while(speed < -1) {
-			speed = speed /2;
+
+//			speed = (int) (speed *0.5) ;
 			return new Point(this.point.x, (this.point.y + speed));
-		}
-		return null;
+
+
+	}
+	public void setSpeed(int x) {
+		this.speed = x;
 	}
 	
 	
