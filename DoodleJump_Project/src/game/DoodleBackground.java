@@ -114,35 +114,51 @@ public class DoodleBackground{
 		}
 	}
 	
-	public void playerMoveUp () {
+//	public void playerMoveUp () {
+//	
+//		int speed = -128;
+//		System.out.println(player.point.x+ " :X  " + player.point.y + " :Y");
+//
+//		
+//		while(speed < -1) {
+//			speed = speed /2;
+//			player.point = new Point(player.point.x, (player.point.y + speed));
+//			System.out.println(player.point.x+ " :X  " + player.point.y + " :Y");
+//		}
+//		while (speed == -1) {
+//			speed = 0;
+//			player.point = new Point(player.point.x, (player.point.y + speed));
+//			
+//		}
+//		while (speed == 0) {
+//			speed = 1;
+//			player.point = new Point(player.point.x, (player.point.y + speed));
+//			System.out.println(player.point.x+ " :X  " + player.point.y + " :Y");
+//			
+//		}
+//		while (speed >= 1) {
+//			if (speed< 64)speed = speed *2;
+//			player.point = new Point(player.point.x, (player.point.y + speed));
+//			System.out.println(player.point.x+ " :X  " + player.point.y + " :Y");
+//			if(player.point.y > 800) break;
+//		}
+//		
+//	}
+//	public Point newPlayerMoveUp(int speed) {
+//		while(speed < -1) {
+//			speed = speed /2;
+//			return new Point(player.point.x, (player.point.y + speed));
+//		}
+//		return null;
+//	}
+//	public void newPlayerPoint (Point point){
+//		player.point = point;
+//	}
+
 	
-		int speed = -128;
-		System.out.println(player.point.x+ " :X  " + player.point.y + " :Y");
-
-		
-		while(speed < -1) {
-			speed = speed /2;
-			player.point = new Point(player.point.x, (player.point.y + speed));
-			System.out.println(player.point.x+ " :X  " + player.point.y + " :Y");
+	public void moveAll () {
+		for(DoodleObject o: objects) {
+			o.move();
 		}
-		while (speed == -1) {
-			speed = 0;
-			player.point = new Point(player.point.x, (player.point.y + speed));
-			
-		}
-		while (speed == 0) {
-			speed = 1;
-			player.point = new Point(player.point.x, (player.point.y + speed));
-			System.out.println(player.point.x+ " :X  " + player.point.y + " :Y");
-			
-		}
-		while (speed >= 1) {
-			if (speed< 64)speed = speed *2;
-			player.point = new Point(player.point.x, (player.point.y + speed));
-			System.out.println(player.point.x+ " :X  " + player.point.y + " :Y");
-			if(player.point.y > 800) break;
-		}
-		
 	}
-
 }

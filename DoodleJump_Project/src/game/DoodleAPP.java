@@ -2,6 +2,8 @@ package game;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.Timer;
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import javax.swing.border.EmptyBorder;
@@ -18,6 +20,8 @@ public class DoodleAPP extends JFrame{
 	private ArrayList<DoodleObject> objectsActive = new ArrayList<>(); 
 	private Engine engine;
 	private int score = 20;
+	private int speed = -128;
+	private Timer timer;
 	
 	
 
@@ -60,8 +64,10 @@ public class DoodleAPP extends JFrame{
 		for(int i =0; i<1;i++) {
 			umgebung.generateStartingPlatform();
 		}
-		umgebung.getConsoleObjects();
-		umgebung.playerMoveUp();
+		
+//		umgebung.getConsoleObjects();
+		
+//		umgebung.newPlayerPoint(umgebung.newPlayerMoveUp(speed));
 		
 		
 		

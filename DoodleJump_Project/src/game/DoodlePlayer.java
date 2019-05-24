@@ -4,7 +4,7 @@ import java.awt.Point;
 
 public class DoodlePlayer extends DoodleObject{
 	
-	private double speed = 0.1;
+	private int speed = -128;
 	private String name;
  
 	
@@ -32,6 +32,7 @@ public class DoodlePlayer extends DoodleObject{
 	@Override
 	public void move() {
 		// TODO Auto-generated method stub
+		this.point = newPlayerMoveUp(speed);
 		
 	}
 //	public void constantBeschl (Point playerpoint) {
@@ -57,6 +58,15 @@ public class DoodlePlayer extends DoodleObject{
 //		}
 //		
 //	}
+	public Point newPlayerMoveUp(int speed) {
+		while(speed < -1) {
+			speed = speed /2;
+			return new Point(this.point.x, (this.point.y + speed));
+		}
+		return null;
+	}
+	
+	
 	
 
 }
