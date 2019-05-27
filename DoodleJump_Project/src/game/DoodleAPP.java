@@ -45,6 +45,7 @@ public class DoodleAPP extends JFrame{
 		contentPane.add(panel_1, BorderLayout.CENTER);
 
 		setResizable(false);
+		setTitle("DoodleJump");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(10, 10, 350, 500);
 
