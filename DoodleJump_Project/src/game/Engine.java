@@ -15,10 +15,13 @@ public class Engine {
 	
 	public boolean checkCollision(ArrayList<DoodleObject> objects) {
 		for(DoodleObject object : objects) {
-			if(((player.point.y >= (object.point.y - object.height)&& player.point.y >= object.point.y))) {
-//					|( player.point.y >= (object.point.y + 5)&&(player.point.y <= (object.point.y - object.height))))
-//					&& ((player.point.x + player.width) > object.point.x
-//					&& player.point.x < (object.point.x + object.width))) {
+			System.out.println(object.point.y + "Y CORD PLAT");
+			System.out.println(player.point.y + "Y CORD PLAYER");
+			if(((player.point.y >= (object.point.y +4 )
+					&& player.point.y >= (object.point.y - object.height-4))
+					&& !object.equals(player))
+					&& ((player.point.x + player.width) > object.point.x
+					&& player.point.x < (object.point.x + object.width))) {
 				
 				return true;
 				
