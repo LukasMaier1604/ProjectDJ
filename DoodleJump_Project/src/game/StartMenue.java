@@ -27,7 +27,7 @@ public class StartMenue extends JFrame {
 	
 	private DoodleAPP app;
 	private JPanel contentPane;
-	private JButton start, score;
+	private JButton start, score, button_2;
 	
 	
 	public StartMenue(DoodleAPP app) {
@@ -42,17 +42,18 @@ public class StartMenue extends JFrame {
 		getContentPane().add(panel);
 		panel.setLayout(new BorderLayout(5, 5));
 		
-		Button start = new Button("Neues Spiel starten");
+		start = new JButton("Neues Spiel starten");
 		panel.add(start, BorderLayout.NORTH);
 		
-		Button score = new Button("Highscore");
+		score = new JButton("Highscore");
 		panel.add(score, BorderLayout.EAST);
 		
-		Button button_2 = new Button("Ja Moin");
+		button_2 = new JButton("Ja Moin");
 		panel.add(button_2, BorderLayout.WEST);
 		
+		
 		this.app = app;
-		//this.gameStart();
+		this.gameStart();
 	}
 	
 	public void gameStart() {
@@ -62,13 +63,9 @@ public class StartMenue extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 			
-				try {
-					app = new DoodleAPP();
-					app.setVisible(true);
-				}catch(Exception o) {
-					o.printStackTrace();
+				System.out.println("hallo");
 			}
 			
-		};
-});
-}}
+		});
+};
+}
