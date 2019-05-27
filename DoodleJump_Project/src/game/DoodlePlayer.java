@@ -80,6 +80,10 @@ public class DoodlePlayer extends DoodleObject{
 		this.speed = x;
 	}
 	
+	public int getSpeed() {
+		return this.speed;
+	}
+	
 	
 	
 

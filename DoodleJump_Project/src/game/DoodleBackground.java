@@ -80,7 +80,7 @@ public class DoodleBackground{
 			
 			DoodleObject plat = new DoodlePlatform(new Point ((int)(width * Math.random()*0.7),y),"Images/blockblack.png");
 			objects.add(plat);
-			y+=50;
+			y+=64;
 		}
 	}
 	

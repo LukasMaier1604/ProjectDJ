@@ -28,12 +28,15 @@ public class StartMenue extends JFrame {
 	private DoodleAPP app;
 	private JPanel contentPane;
 	private JButton start, score, button_2;
-	private JTextField txtHallo;
+	private JPanel panel_1;
+	private JPanel panel_2;
+	private JPanel panel_3;
+	private JTextField txtPlayer;
 	
 	
 	public StartMenue(DoodleAPP app) {
 		setTitle("DoodleJump Startmen\u00FC\r\n");
-		setBounds(10, 10, 286, 243);
+		setBounds(10, 10, 389, 171);
 		getContentPane().setBackground(Color.WHITE);
 		getContentPane().setLayout(new GridLayout(1, 0, 0, 0));
 		
@@ -43,19 +46,32 @@ public class StartMenue extends JFrame {
 		getContentPane().add(panel);
 		panel.setLayout(new BorderLayout(5, 5));
 		
-		start = new JButton("Neues Spiel starten");
-		panel.add(start, BorderLayout.NORTH);
+		panel_1 = new JPanel();
+		panel.add(panel_1, BorderLayout.CENTER);
 		
 		score = new JButton("Highscore");
-		panel.add(score, BorderLayout.EAST);
+		panel_1.add(score);
 		
-		button_2 = new JButton("Ja Moin");
-		panel.add(button_2, BorderLayout.WEST);
+		panel_2 = new JPanel();
+		FlowLayout flowLayout_1 = (FlowLayout) panel_2.getLayout();
+		flowLayout_1.setAlignment(FlowLayout.LEFT);
+		panel.add(panel_2, BorderLayout.NORTH);
 		
-		txtHallo = new JTextField();
-		txtHallo.setText("nein");
-		panel.add(txtHallo, BorderLayout.SOUTH);
-		txtHallo.setColumns(10);
+		start = new JButton("NEW GAME");
+		panel_2.add(start);
+		
+		txtPlayer = new JTextField();
+		txtPlayer.setHorizontalAlignment(SwingConstants.RIGHT);
+		txtPlayer.setText("Player1");
+		panel_2.add(txtPlayer);
+		txtPlayer.setColumns(10);
+		
+		panel_3 = new JPanel();
+		panel.add(panel_3, BorderLayout.SOUTH);
+		FlowLayout flowLayout = (FlowLayout) panel_3.getLayout();
+		
+		button_2 = new JButton("Save Score");
+		panel_3.add(button_2);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		
@@ -65,7 +81,7 @@ public class StartMenue extends JFrame {
 	
 	public void gameStart() {
 		
-		score.addActionListener(new ActionListener() {
+		start.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
