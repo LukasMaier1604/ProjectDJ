@@ -105,7 +105,7 @@ public class DoodleAPP extends JFrame{
 		engine.platformActive(this.objectsActive, umgebung.getObjects());
 		if ((engine.checkCollision(objectsActive)) && (umgebung.getPlayer().getSpeed() > 0)) {
 //			addPlatform();
-			umgebung.getPlayer().setSpeed(-128); 
+			umgebung.getPlayer().setSpeed(-24); 
 //			Beschleunigung des Spielers
 
 		}
