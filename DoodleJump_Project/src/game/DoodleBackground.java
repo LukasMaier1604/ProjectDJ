@@ -64,13 +64,12 @@ public class DoodleBackground{
 	}
 
 
-	public boolean bottomReached(int yPosition) {
-		if (yPosition == bottomPoint.y) {
+	public boolean bottomReached(DoodlePlayer player) {
+		if (player.point.y >= this.height) {
 			return true;
 		}
-		else {
-			return false;
-		}
+			
+		return false;
 
 	}
 	

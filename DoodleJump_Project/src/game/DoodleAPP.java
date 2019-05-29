@@ -1,11 +1,14 @@
 package game;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Frame;
+
 import javax.swing.border.EmptyBorder;
 import java.awt.GridLayout;
 import java.awt.KeyboardFocusManager;
@@ -26,6 +29,7 @@ public class DoodleAPP extends JFrame{
 	private int score = 20;
 	private Timer timer;
 	private ArrayList<Integer> keysPressed = new ArrayList<>();
+	private boolean spielLauft = true;
 
 
 
@@ -33,7 +37,7 @@ public class DoodleAPP extends JFrame{
 
 	public DoodleAPP() {
 
-		umgebung = new DoodleBackground(400, 800);								// OPEN TO DO
+		umgebung = new DoodleBackground(350, 500);								// OPEN TO DO
 
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -46,7 +50,7 @@ public class DoodleAPP extends JFrame{
 
 		setResizable(false);
 		setTitle("DoodleJump");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(10, 10, 350, 500);
 
 
@@ -94,7 +98,7 @@ public class DoodleAPP extends JFrame{
 	}
 	public void setMainFrame() {
 		setTitle("Doodle Jump");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
 	}
 
@@ -107,6 +111,9 @@ public class DoodleAPP extends JFrame{
 //			addPlatform();
 			umgebung.getPlayer().setSpeed(-24); 
 //			Beschleunigung des Spielers
+			finished(umgebung.getPlayer());
+//			if (spielLauft == false) dispose();							// hier bin ich dran, das fenster soll ich sich schließen und Rückkehr
+																		//zum Hauptmenue
 
 		}
 
@@ -144,6 +151,7 @@ public class DoodleAPP extends JFrame{
 				updatePosition(frames);
 				umgebung.moveAll();
 				jump();
+
 				myOverlay.repaint();
 				
 				
@@ -157,9 +165,8 @@ public class DoodleAPP extends JFrame{
 
 	}
 
-	public void startGame() {
-
-
+	public boolean getStatus() {
+		return spielLauft;
 	}
 
 	public void updatePosition(int frameTime) {
@@ -179,7 +186,19 @@ public class DoodleAPP extends JFrame{
 	}
 
 
-
+	public boolean finished(DoodlePlayer player) {
+		
+		
+		if(umgebung.bottomReached(umgebung.getPlayer()))
+		{
+			JOptionPane.showMessageDialog(null, "Das Spiel ist beendet");
+			spielLauft = false;
+			return true;
+//			System.out.println("ende");
+		}
+		
+		return true;
+	}
 
 
 

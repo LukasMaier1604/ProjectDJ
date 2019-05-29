@@ -62,7 +62,7 @@ public class StartMenue extends JFrame {
 		
 		txtPlayer = new JTextField();
 		txtPlayer.setHorizontalAlignment(SwingConstants.RIGHT);
-		txtPlayer.setText("Player1");
+		txtPlayer.setText("Doodle1");
 		panel_2.add(txtPlayer);
 		txtPlayer.setColumns(10);
 		
@@ -77,6 +77,7 @@ public class StartMenue extends JFrame {
 		
 		//this.app = app;
 		this.gameStart();
+		
 	}
 	
 	public void gameStart() {
@@ -89,12 +90,13 @@ public class StartMenue extends JFrame {
 				try {
 					app = new DoodleAPP();
 					app.setVisible(true);
+					if(app.getStatus()==false) setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);					
 				}catch(Exception o) {
 					o.printStackTrace();
 			}
 	
 			}
-			
+
 		});
 };
 }
