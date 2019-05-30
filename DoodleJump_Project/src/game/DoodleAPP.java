@@ -106,10 +106,10 @@ public class DoodleAPP extends JFrame{
 
 
 	public void jump() {
-		engine.platformActive(this.objectsActive, umgebung.getObjects());
+		engine.platformActive(this.objectsActive, this.objects);
 		if ((engine.checkCollision(objectsActive)) && (umgebung.getPlayer().getSpeed() > 0)) {
-//			addPlatform();
-			umgebung.getPlayer().setSpeed(-24); 
+			addPlatform();
+			umgebung.getPlayer().setSpeed(-18); 
 //			Beschleunigung des Spielers
 			finished(umgebung.getPlayer());
 //			if (spielLauft == false) dispose();							// hier bin ich dran, das fenster soll ich sich schließen und Rückkehr
@@ -121,7 +121,9 @@ public class DoodleAPP extends JFrame{
 
 	public void addPlatform() {
 		umgebung.generateRadomPlatform(score);
+		updateList();
 		engine.platformActive(this.objectsActive, this.objects);
+		
 	}
 	
 
@@ -151,7 +153,7 @@ public class DoodleAPP extends JFrame{
 				updatePosition(frames);
 				umgebung.moveAll();
 				jump();
-
+				umgebung.teleportToBorder();
 				myOverlay.repaint();
 				
 				
@@ -193,6 +195,7 @@ public class DoodleAPP extends JFrame{
 		{
 			JOptionPane.showMessageDialog(null, "Das Spiel ist beendet");
 			spielLauft = false;
+			umgebung.getPlayer().point.y = 100;
 			return true;
 //			System.out.println("ende");
 		}
