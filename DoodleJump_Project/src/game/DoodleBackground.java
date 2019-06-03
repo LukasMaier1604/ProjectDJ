@@ -108,10 +108,10 @@ public class DoodleBackground{
 			}
 		}
 		*/
-		if (runTime >= 6){
+		if (runTime >= 7){
 			System.out.println(runTime + "    <--   RunTime");
 
-			for (int i = 0; i<10; i++ ){
+			for (int i = 0; i<7; i++ ){
 				plat = new DoodlePlatform(new Point ((int)(width * Math.random()),(int)(Math.random()* -10)-yVariable),"Images/blockblack.png");
 				objects.add(plat);
 				yVariable += 64;
