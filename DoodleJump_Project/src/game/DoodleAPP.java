@@ -42,7 +42,7 @@ public class DoodleAPP extends JFrame{
 
 	public DoodleAPP() {
 
-		umgebung = new DoodleBackground(350, 500);
+		umgebung = new DoodleBackground(300, 500);
 
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -109,8 +109,8 @@ public class DoodleAPP extends JFrame{
 	public void jump() {
 
 		if ((engine.checkCollision(objects)) && (umgebung.getPlayer().getSpeed() > 0)) {
-			umgebung.getPlayer().setSpeed(-18);
-//		if(runTime >= 15)	runTime += 1;
+			umgebung.getPlayer().setSpeed(-13);
+			runTime += 1;
 
 		}
 

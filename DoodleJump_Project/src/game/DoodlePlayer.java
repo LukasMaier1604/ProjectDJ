@@ -4,8 +4,8 @@ import java.awt.Point;
 
 public class DoodlePlayer extends DoodleObject{
 
-	private int speed = -18;
-	private double force = 0.5;
+	private int speed = -13;
+	private double force = 0.7;
 	private String name;
 
 

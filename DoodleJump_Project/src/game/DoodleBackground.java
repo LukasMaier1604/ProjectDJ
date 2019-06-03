@@ -83,6 +83,7 @@ public class DoodleBackground{
 			objects.add(plat);
 			y+=64;
 		}
+	
 	}
 
 
@@ -107,15 +108,16 @@ public class DoodleBackground{
 			}
 		}
 		*/
-		if (runTime >= 10){
+		if (runTime >= 6){
 			System.out.println(runTime + "    <--   RunTime");
 
 			for (int i = 0; i<10; i++ ){
-				plat = new DoodlePlatform(new Point ((int)(width * Math.random())-50,(int)(Math.random()* -10)-yVariable),"Images/blockblack.png");
+				plat = new DoodlePlatform(new Point ((int)(width * Math.random()),(int)(Math.random()* -10)-yVariable),"Images/blockblack.png");
 				objects.add(plat);
 				yVariable += 64;
 
 			}
+			yVariable = 0;
 			return true;
 		}
 
