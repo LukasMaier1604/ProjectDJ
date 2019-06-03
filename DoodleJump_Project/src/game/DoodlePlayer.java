@@ -3,30 +3,30 @@ package game;
 import java.awt.Point;
 
 public class DoodlePlayer extends DoodleObject{
-	
+
 	private int speed = -18;
-	private double force = 0.5; 
+	private double force = 0.5;
 	private String name;
- 
-	
+
+
 	public DoodlePlayer (Point point, int width, int height, String name) {
 		super (point,width,height,"Images/Kreis.png");
 		this.name = name;
-		
+
 	}
-	
-	
+
+
 	public void moveLeft(int frameTime) {
 		Point newPosition = new Point(point.x - (int) (force*frameTime) ,point.y);
 //		DoodleBackground.teleportToBorder(); kommt das in Controlls oder hier her?
 		point = newPosition;
-		
+
 	}
 	public void moveRight(int frameTime) {
 		Point newPosition = new Point(point.x + (int) (force*frameTime) ,point.y);
 //		DoodleBackground.teleportToBorder();
 		point = newPosition;
-		
+
 	}
 
 
@@ -42,7 +42,7 @@ public class DoodlePlayer extends DoodleObject{
 			e.printStackTrace();
 		}
 		this.point = newPlayerMoveUp(speed);
-		
+
 	}
 //	public void constantBeschl (Point playerpoint) {
 //		int con = 32;
@@ -62,10 +62,10 @@ public class DoodlePlayer extends DoodleObject{
 //		}
 //		while (con < -1) {
 //			con = con *2;
-//			playerpoint = new Point (this.point.x,this.point.y + con);	
+//			playerpoint = new Point (this.point.x,this.point.y + con);
 //			System.out.println(playerpoint.x + " :X  " + playerpoint.y + " :Y");
 //		}
-//		
+//
 //	}
 	public Point newPlayerMoveUp(int speed) {
 
@@ -77,12 +77,12 @@ public class DoodlePlayer extends DoodleObject{
 	public void setSpeed(int x) {
 		this.speed = x;
 	}
-	
+
 	public int getSpeed() {
 		return this.speed;
 	}
-	
-	
-	
+
+
+
 
 }

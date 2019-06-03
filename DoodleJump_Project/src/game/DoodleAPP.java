@@ -16,6 +16,8 @@ import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 
 public class DoodleAPP extends JFrame{
@@ -29,7 +31,10 @@ public class DoodleAPP extends JFrame{
 	private int score = 20;
 	private Timer timer;
 	private ArrayList<Integer> keysPressed = new ArrayList<>();
-	private boolean spielLauft = true;
+	private boolean spielLaeuft = true;
+	private Closingclass cc;
+	private int closeCommand = 0;
+	public int runTime = 10;
 
 
 
@@ -37,7 +42,7 @@ public class DoodleAPP extends JFrame{
 
 	public DoodleAPP() {
 
-		umgebung = new DoodleBackground(350, 500);								// OPEN TO DO
+		umgebung = new DoodleBackground(350, 500);
 
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -70,15 +75,11 @@ public class DoodleAPP extends JFrame{
 
 		setEngine();
 
-
 		for(int i =0; i<1;i++) {
 			umgebung.generateStartingPlatform();
-			for(DoodleObject o: objects) {
-				objectsActive.add(o);
 			}
 			this.keyControl();
-			
-		}
+
 
 //		umgebung.getConsoleObjects();
 
@@ -106,26 +107,21 @@ public class DoodleAPP extends JFrame{
 
 
 	public void jump() {
-		engine.platformActive(this.objectsActive, this.objects);
-		if ((engine.checkCollision(objectsActive)) && (umgebung.getPlayer().getSpeed() > 0)) {
-			addPlatform();
-			umgebung.getPlayer().setSpeed(-18); 
-//			Beschleunigung des Spielers
-			finished(umgebung.getPlayer());
-//			if (spielLauft == false) dispose();							// hier bin ich dran, das fenster soll ich sich schließen und Rückkehr
-																		//zum Hauptmenue
+
+		if ((engine.checkCollision(objects)) && (umgebung.getPlayer().getSpeed() > 0)) {
+			umgebung.getPlayer().setSpeed(-18);
+//		if(runTime >= 15)	runTime += 1;
 
 		}
 
 	}
 
 	public void addPlatform() {
-		umgebung.generateRadomPlatform(score);
-		updateList();
-		engine.platformActive(this.objectsActive, this.objects);
-		
+		if(umgebung.generateRadomPlatform(runTime)) {
+			runTime = 0 ;
+		}
 	}
-	
+
 
 	public ArrayList<DoodleObject> getObjects(){
 		return objects;
@@ -143,6 +139,10 @@ public class DoodleAPP extends JFrame{
 		keyControl();
 	}
 
+	public void setcloseCommand(int eingabe){
+		closeCommand = eingabe;
+	}
+
 	public void keyControl(){
 
 		final int frames =10;
@@ -150,15 +150,28 @@ public class DoodleAPP extends JFrame{
 
 			@Override
 			public void actionPerformed( ActionEvent e){
-				updatePosition(frames);
-				umgebung.moveAll();
-				jump();
-				umgebung.teleportToBorder();
-				myOverlay.repaint();
-				
-				
+				if(spielLaeuft == true) {
+
+					updatePosition(frames);
+					umgebung.moveAll();
+					jump();
+					addPlatform();
+					try {
+						finished(umgebung.getPlayer());
+					} catch (InterruptedException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+
+					umgebung.teleportToBorder();
+					myOverlay.repaint();
+					}else {
+						switching(closeCommand);
+				}
 			}
 		});
+
+
 		timer.start();
 
 
@@ -168,40 +181,81 @@ public class DoodleAPP extends JFrame{
 	}
 
 	public boolean getStatus() {
-		return spielLauft;
+		return spielLaeuft;
 	}
 
 	public void updatePosition(int frameTime) {
 		for (int key : keysPressed){
 			if( key == KeyEvent.VK_LEFT){
 				umgebung.getPlayer().moveLeft(frameTime);
-//				jump();
-//				System.out.println(engine.platformActive(this.objectsActive, this.objects));
-
 			}
 			if( key == KeyEvent.VK_RIGHT){
 				umgebung.getPlayer().moveRight(frameTime);
-//				jump();
-				
 			}
 		}
 	}
 
+	public void switching(int var){
 
-	public boolean finished(DoodlePlayer player) {
-		
-		
-		if(umgebung.bottomReached(umgebung.getPlayer()))
-		{
-			JOptionPane.showMessageDialog(null, "Das Spiel ist beendet");
-			spielLauft = false;
-			umgebung.getPlayer().point.y = 100;
-			return true;
-//			System.out.println("ende");
-		}
-		
-		return true;
+		switch (var){
+		case 1: this.dispose();
+			break;
+		case 2: System.exit(1);
+			break;
+		case 0: ;
+			break;
+		default:;
+					}
+
 	}
+
+	public void finished(DoodlePlayer player) throws InterruptedException {
+
+
+		if(umgebung.bottomReached(player))
+		{
+			spielLaeuft = false;
+
+//			int choice = JOptionPane.showConfirmDialog(null, "Game Over. Wohingenau?", "Game Over",JOptionPane.YES_NO_CANCEL_OPTION);
+//			System.out.println(choice);
+//
+
+			try {
+				cc = new Closingclass(this);
+				cc.setVisible(true);
+			}catch(Exception o) {
+				o.printStackTrace();
+		}
+
+
+
+
+
+
+
+
+
+//			this.addWindowListener(new WindowAdapter(){
+//
+//				@Override
+//				public void windowClosing(WindowEvent e) {
+//
+//						cc = new Closingclass();
+//						int result = JOptionPane.showConfirmDialog(
+//						           cc,
+//						            "Spiel beendet. Zurï¿½ck zum Hauptmenï¿½",
+//						            "Exit Application",
+//						            JOptionPane.YES_NO_OPTION);
+//
+//						if (result == JOptionPane.YES_OPTION)
+//				            cc.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//						}
+//				});
+//
+//			cc.setVisible(true);
+		}
+	}
+
 
 
 

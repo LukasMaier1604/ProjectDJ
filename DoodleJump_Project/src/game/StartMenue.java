@@ -24,7 +24,7 @@ import java.awt.Button;
 import com.jgoodies.forms.factories.DefaultComponentFactory;
 
 public class StartMenue extends JFrame {
-	
+
 	private DoodleAPP app;
 	private JPanel contentPane;
 	private JButton start, score, button_2;
@@ -32,69 +32,67 @@ public class StartMenue extends JFrame {
 	private JPanel panel_2;
 	private JPanel panel_3;
 	private JTextField txtPlayer;
-	
-	
+
+
 	public StartMenue(DoodleAPP app) {
 		setTitle("DoodleJump Startmen\u00FC\r\n");
 		setBounds(10, 10, 389, 171);
 		getContentPane().setBackground(Color.WHITE);
 		getContentPane().setLayout(new GridLayout(1, 0, 0, 0));
-		
+
 		Panel panel = new Panel();
 		panel.setEnabled(true);
 		panel.setBackground(Color.PINK);
 		getContentPane().add(panel);
 		panel.setLayout(new BorderLayout(5, 5));
-		
+
 		panel_1 = new JPanel();
 		panel.add(panel_1, BorderLayout.CENTER);
-		
+
 		score = new JButton("Highscore");
 		panel_1.add(score);
-		
+
 		panel_2 = new JPanel();
 		FlowLayout flowLayout_1 = (FlowLayout) panel_2.getLayout();
 		flowLayout_1.setAlignment(FlowLayout.LEFT);
 		panel.add(panel_2, BorderLayout.NORTH);
-		
+
 		start = new JButton("NEW GAME");
 		panel_2.add(start);
-		
+
 		txtPlayer = new JTextField();
 		txtPlayer.setHorizontalAlignment(SwingConstants.RIGHT);
 		txtPlayer.setText("Doodle1");
 		panel_2.add(txtPlayer);
 		txtPlayer.setColumns(10);
-		
+
 		panel_3 = new JPanel();
 		panel.add(panel_3, BorderLayout.SOUTH);
 		FlowLayout flowLayout = (FlowLayout) panel_3.getLayout();
-		
+
 		button_2 = new JButton("Save Score");
 		panel_3.add(button_2);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-		
-		//this.app = app;
+
 		this.gameStart();
-		
+
 	}
-	
+
 	public void gameStart() {
-		
+
 		start.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-			
+
 				try {
 					app = new DoodleAPP();
 					app.setVisible(true);
-					if(app.getStatus()==false) setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);					
 				}catch(Exception o) {
 					o.printStackTrace();
 			}
-	
+
 			}
 
 		});
