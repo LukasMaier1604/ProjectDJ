@@ -33,7 +33,7 @@ public class DoodleAPP extends JFrame{
 	private ArrayList<Integer> keysPressed = new ArrayList<>();
 	private boolean spielLaeuft = true;
 	private Closingclass cc;
-	private int closeCommand = 0;
+	private int closeCommand;
 	public int runTime = 10;
 
 
@@ -42,7 +42,7 @@ public class DoodleAPP extends JFrame{
 
 	public DoodleAPP() {
 
-		umgebung = new DoodleBackground(300, 500);
+		umgebung = new DoodleBackground(450, 1000);
 
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -56,7 +56,7 @@ public class DoodleAPP extends JFrame{
 		setResizable(false);
 		setTitle("DoodleJump");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(10, 10, 350, 500);
+		setBounds(10, 10, umgebung.getWidth(), umgebung.getHeight());
 
 
 		myOverlay = new Overlay(umgebung);								//�hnlich dem Canvas, funktioniert hier noch nicht. bin noch
@@ -202,7 +202,14 @@ public class DoodleAPP extends JFrame{
 			break;
 		case 2: System.exit(1);
 			break;
-		case 0: ;
+		case 0: 
+//			try {
+//				DoodleAPP appNeu = new DoodleAPP();
+//				appNeu.setVisible(true);
+//				}catch(Exception o) {
+//					o.printStackTrace();
+//				};
+//				this.dispose();
 			break;
 		default:;
 					}
