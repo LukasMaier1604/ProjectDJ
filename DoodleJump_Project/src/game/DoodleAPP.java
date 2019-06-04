@@ -42,7 +42,7 @@ public class DoodleAPP extends JFrame{
 
 	public DoodleAPP() {
 
-		umgebung = new DoodleBackground(450, 1000);
+		umgebung = new DoodleBackground(450, 800);
 
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -265,13 +265,29 @@ public class DoodleAPP extends JFrame{
 
 
 	public void moveView {
-		if (player.Point.y = 200){
+		if (umgebung.getPlayer().point.y <= 200){
 			for( DoodleObjects o : umgebung.getObjects()){
-				o.setSpeed(umgebung.getPlayer().getSpeed());
+				if(!o.equals(umgebung.getPlayer()) o.setSpeed((umgebung.getPlayer().getSpeed())*-1);
+				
 			}
-			umgebung.getPlayer().setSpeed(0);
+
+		}
+		if (umgebung.getPlayer().point.y >= 200){
+			for( DoodleObjects o : umgebung.getObjects()){
+				if(!o.equals(umgebung.getPlayer()) o.setSpeed((0);
+				
+			}
 		}
 
+	}
+
+	public int calculateJump(){
+		int restSpeed = umgebung.getPlayer().getSpeed()*-1;
+		int restMove = 0;
+		for(int i = 0; i <= restSpeed; i++){
+			restMove = restMove + (restSpeed - i);
+		}
+		return restMove;
 	}
 
 

@@ -74,6 +74,7 @@ public class DoodlePlayer extends DoodleObject{
 
 
 	}
+	@Override
 	public void setSpeed(int x) {
 		this.speed = x;
 	}
