@@ -265,14 +265,29 @@ public class DoodleAPP extends JFrame{
 
 
 	public void moveView {
-		while (umgebung.getPlayer().point.y <= 200){
+		if (umgebung.getPlayer().point.y <= 200){
 			for( DoodleObjects o : umgebung.getObjects()){
-				o.setSpeed(umgebung.getPlayer().getSpeed());
+				if(!o.equals(umgebung.getPlayer()) o.setSpeed((umgebung.getPlayer().getSpeed())*-1);
+				
 			}
-			umgebung.getPlayer().setSpeed(1);
 
 		}
+		if (umgebung.getPlayer().point.y >= 200){
+			for( DoodleObjects o : umgebung.getObjects()){
+				if(!o.equals(umgebung.getPlayer()) o.setSpeed((0);
+				
+			}
+		}
 
+	}
+
+	public int calculateJump(){
+		int restSpeed = umgebung.getPlayer().getSpeed()*-1;
+		int restMove = 0;
+		for(int i = 0; i <= restSpeed; i++){
+			restMove = restMove + (restSpeed - i);
+		}
+		return restMove;
 	}
 
 
