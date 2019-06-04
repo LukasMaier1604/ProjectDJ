@@ -25,6 +25,7 @@ public class DoodlePlatform extends DoodleObject{
 		return speed;
 	}
 
+	@Override
 	public void setSpeed(int speed){
 		this.speed = speed;
 	}

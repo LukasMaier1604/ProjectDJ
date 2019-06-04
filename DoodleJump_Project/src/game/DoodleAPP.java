@@ -42,7 +42,7 @@ public class DoodleAPP extends JFrame{
 
 	public DoodleAPP() {
 
-		umgebung = new DoodleBackground(450, 1000);
+		umgebung = new DoodleBackground(450, 800);
 
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -265,11 +265,12 @@ public class DoodleAPP extends JFrame{
 
 
 	public void moveView {
-		if (player.Point.y = 200){
+		while (umgebung.getPlayer().point.y <= 200){
 			for( DoodleObjects o : umgebung.getObjects()){
 				o.setSpeed(umgebung.getPlayer().getSpeed());
 			}
-			umgebung.getPlayer().setSpeed(0);
+			umgebung.getPlayer().setSpeed(1);
+
 		}
 
 	}
