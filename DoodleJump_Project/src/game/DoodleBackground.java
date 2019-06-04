@@ -12,6 +12,7 @@ public class DoodleBackground{
 	private DoodlePlayer player;
 	private ArrayList<DoodleObject> objects;
 	private int yVariable;
+	private int grenze;
 																// zur Darstellung muss der springende Punkt auch in die Liste
 																// einfache if/not-Abfrage f�r die Plattformen sp�ter
 

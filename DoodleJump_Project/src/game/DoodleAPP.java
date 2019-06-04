@@ -264,6 +264,17 @@ public class DoodleAPP extends JFrame{
 	}
 
 
+	public void moveView {
+		if (player.Point.y = 200){
+			for( DoodleObjects o : umgebung.getObjects()){
+				o.setSpeed(umgebung.getPlayer().getSpeed());
+			}
+			umgebung.getPlayer().setSpeed(0);
+		}
+
+	}
+
+
 
 
 
