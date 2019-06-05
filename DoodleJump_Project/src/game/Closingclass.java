@@ -108,7 +108,7 @@ public class Closingclass extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e){
 
-				app.setcloseCommand(0);
+				app.setcloseCommand(3);
 				exit();
 			}
 		});
