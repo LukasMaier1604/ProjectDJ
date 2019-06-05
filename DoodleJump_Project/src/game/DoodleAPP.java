@@ -43,7 +43,8 @@ public class DoodleAPP extends JFrame{
 	public DoodleAPP() {
 
 		umgebung = new DoodleBackground(450, 1000);
-
+		closeCommand = 0;
+		
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setBackground(Color.WHITE);
@@ -202,14 +203,14 @@ public class DoodleAPP extends JFrame{
 			break;
 		case 2: System.exit(1);
 			break;
-		case 0: 
+		case 3: 
+//			this.dispose();
 //			try {
 //				DoodleAPP appNeu = new DoodleAPP();
 //				appNeu.setVisible(true);
 //				}catch(Exception o) {
 //					o.printStackTrace();
 //				};
-//				this.dispose();
 			break;
 		default:;
 					}
