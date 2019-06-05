@@ -78,7 +78,7 @@ public class DoodleBackground{
 
 	public void generateStartingPlatform() {
 		int y = 3;
-		for (int i = 0; i < 7; i++) {
+		for (int i = 0; i < 15; i++) {
 
 			DoodleObject plat = new DoodlePlatform(new Point ((int)(width * Math.random()*0.7),y),"Images/blockblack.png");
 			objects.add(plat);
