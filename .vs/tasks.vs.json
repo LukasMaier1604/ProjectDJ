@@ -1,0 +1,10 @@
+{
+  "version": "0.2.1",
+  "tasks": [
+    {
+      "taskName": "Task-App",
+      "appliesTo": "DoodleJump_Project/src/game/App.java",
+      "type": "launch"
+    }
+  ]
+}

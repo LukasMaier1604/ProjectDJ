@@ -12,6 +12,7 @@ public class DoodleBackground{
 	private DoodlePlayer player;
 	private ArrayList<DoodleObject> objects;
 	private int yVariable;
+	private int grenze;
 																// zur Darstellung muss der springende Punkt auch in die Liste
 																// einfache if/not-Abfrage f�r die Plattformen sp�ter
 
@@ -77,7 +78,7 @@ public class DoodleBackground{
 
 	public void generateStartingPlatform() {
 		int y = 3;
-		for (int i = 0; i < 7; i++) {
+		for (int i = 0; i < 15; i++) {
 
 			DoodleObject plat = new DoodlePlatform(new Point ((int)(width * Math.random()*0.7),y),"Images/blockblack.png");
 			objects.add(plat);

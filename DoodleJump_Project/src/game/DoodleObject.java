@@ -89,5 +89,6 @@ public abstract class DoodleObject {
 	}
 	
 	public abstract void move();
+	public abstract void setSpeed(int x);
 	
 }

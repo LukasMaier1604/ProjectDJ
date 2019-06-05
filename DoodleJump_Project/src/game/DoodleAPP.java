@@ -34,7 +34,7 @@ public class DoodleAPP extends JFrame{
 	private boolean spielLaeuft = true;
 	private Closingclass cc;
 	private int closeCommand;
-	public int runTime = 10;
+	public int runTime = 0;
 
 
 
@@ -42,9 +42,8 @@ public class DoodleAPP extends JFrame{
 
 	public DoodleAPP() {
 
-		umgebung = new DoodleBackground(450, 1000);
-		closeCommand = 0;
-		
+		umgebung = new DoodleBackground(350, 800);
+
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setBackground(Color.WHITE);
@@ -157,6 +156,7 @@ public class DoodleAPP extends JFrame{
 					umgebung.moveAll();
 					jump();
 					addPlatform();
+					moveView();
 					try {
 						finished(umgebung.getPlayer());
 					} catch (InterruptedException e1) {
@@ -203,7 +203,7 @@ public class DoodleAPP extends JFrame{
 			break;
 		case 2: System.exit(1);
 			break;
-		case 3: 
+		case 3:
 //			this.dispose();
 //			try {
 //				DoodleAPP appNeu = new DoodleAPP();
@@ -262,6 +262,35 @@ public class DoodleAPP extends JFrame{
 //
 //			cc.setVisible(true);
 		}
+	}
+
+
+	public void moveView() {
+		if (umgebung.getPlayer().point.y <= 300){
+			for( DoodleObject o : umgebung.getObjects()){
+				if(!o.equals(umgebung.getPlayer()))
+					if(umgebung.getPlayer().getSpeed() <0) o.setSpeed((umgebung.getPlayer().getSpeed())*-1);
+
+			}
+
+		}
+		if (umgebung.getPlayer().point.y > 200){
+			for( DoodleObject o : umgebung.getObjects()){
+				if(!o.equals(umgebung.getPlayer())) o.setSpeed(0);
+
+			}
+		}
+
+	}
+
+	public int calculateJump(){
+		int restSpeed = umgebung.getPlayer().getSpeed()*-1;
+		int restMove = 0;
+		for(int i = 0; i <= restSpeed; i++){
+			restMove = restMove + (restSpeed - i);
+		}
+		System.out.println(restMove);
+		return restMove;
 	}
 
 
