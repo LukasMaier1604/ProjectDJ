@@ -5,7 +5,7 @@ import java.awt.Point;
 public class DoodlePlayer extends DoodleObject{
 
 	private int speed = -13;
-	private double force = 0.7;
+	private double force = 1;
 	private String name;
 
 
@@ -33,7 +33,7 @@ public class DoodlePlayer extends DoodleObject{
 	@Override
 	public void move() {
 		// TODO Auto-generated method stub
-		System.out.println(speed);
+		System.out.println(this.point.x);
 		if (speed < 50)speed =  (speed +1);
 		try {
 			Thread.sleep(15);
@@ -68,8 +68,6 @@ public class DoodlePlayer extends DoodleObject{
 //
 //	}
 	public Point newPlayerMoveUp(int speed) {
-
-//			speed = (int) (speed *0.5) ;
 			return new Point(this.point.x, (this.point.y + speed));
 
 

@@ -151,12 +151,13 @@ public class DoodleAPP extends JFrame{
 			@Override
 			public void actionPerformed( ActionEvent e){
 				if(spielLaeuft == true) {
-
+					umgebung.teleportToBorder();
 					updatePosition(frames);
 					umgebung.moveAll();
 					jump();
 					addPlatform();
 					moveView();
+					
 					try {
 						finished(umgebung.getPlayer());
 					} catch (InterruptedException e1) {
@@ -164,7 +165,7 @@ public class DoodleAPP extends JFrame{
 						e1.printStackTrace();
 					}
 
-					umgebung.teleportToBorder();
+					
 					myOverlay.repaint();
 					}else {
 						switching(closeCommand);
@@ -266,7 +267,7 @@ public class DoodleAPP extends JFrame{
 
 
 	public void moveView() {
-		if (umgebung.getPlayer().point.y <= 300){
+		if (umgebung.getPlayer().point.y <= 200){
 			for( DoodleObject o : umgebung.getObjects()){
 				if(!o.equals(umgebung.getPlayer()))
 					if(umgebung.getPlayer().getSpeed() <0) o.setSpeed((umgebung.getPlayer().getSpeed())*-1);
@@ -283,15 +284,15 @@ public class DoodleAPP extends JFrame{
 
 	}
 
-	public int calculateJump(){
-		int restSpeed = umgebung.getPlayer().getSpeed()*-1;
-		int restMove = 0;
-		for(int i = 0; i <= restSpeed; i++){
-			restMove = restMove + (restSpeed - i);
-		}
-		System.out.println(restMove);
-		return restMove;
-	}
+//	public int calculateJump(){
+//		int restSpeed = umgebung.getPlayer().getSpeed()*-1;
+//		int restMove = 0;
+//		for(int i = 0; i <= restSpeed; i++){
+//			restMove = restMove + (restSpeed - i);
+//		}
+//		System.out.println(restMove);
+//		return restMove;
+//	}
 
 
 

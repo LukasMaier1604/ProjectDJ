@@ -55,12 +55,12 @@ public class DoodleBackground{
 
 	public void teleportToBorder() {
 		Point newPosition;
-		if (player.point.x == bottomPoint.x) {
-			newPosition = new Point(player.point.x + (this.width),player.point.y);
+		if (player.point.x <= bottomPoint.x) {
+			newPosition = new Point(player.point.x + width -player.getWidth(),player.point.y);
 			player.point = newPosition;
 		}
-		if (player.point.x == (bottomPoint.x + width)) {
-			newPosition = new Point(player.point.x - bottomPoint.x,player.point.y);
+		if (player.point.x >= (bottomPoint.x + width)) {
+			newPosition = new Point(player.point.x - width,player.point.y);
 			player.point = newPosition;
 		}
 
