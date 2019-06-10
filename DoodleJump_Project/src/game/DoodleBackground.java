@@ -13,8 +13,13 @@ public class DoodleBackground{
 	private ArrayList<DoodleObject> objects;
 	private int yVariable;
 	private int grenze;
+	private int abstand;
 																// zur Darstellung muss der springende Punkt auch in die Liste
 																// einfache if/not-Abfrage f�r die Plattformen sp�ter
+
+	public int getAbstand() {
+		return abstand;
+	}
 
 	public DoodleBackground(int width, int height) {
 		this.width = width;
@@ -82,43 +87,27 @@ public class DoodleBackground{
 
 			DoodleObject plat = new DoodlePlatform(new Point ((int)(width * Math.random()*0.7),y),"Images/blockblack.png");
 			objects.add(plat);
-			y+=64;
+			y+=50;
 		}
+		abstand = player.point.y; 
+		
 	
 	}
 
 
-	public boolean generateRadomPlatform(int runTime) {
+	public boolean generateRadomPlatform() {
 		DoodlePlatform plat;
-//		if (score <= 100){
-//		for (int i = 0; i < 3; i++) {
-//				plat = new DoodlePlatform(new Point ((int)(width * Math.random())-50,(int)(Math.random()* -20)),"Images/blockblack.png");
-//				objects.add(plat);
-//			}
-//		}
-//		if (score >= 100){
-//			for (int i = 0; i < 2; i++) {
-/*				plat = new DoodlePlatform(new Point ((int)(width * Math.random())-50,(int)(Math.random()* -20)),"Images/blockblack.png");
-				objects.add(plat);
-				}
-		}
-		if (score > 150){
-			for (int i = 0; i < 1; i++) {
-				plat = new DoodlePlatform(new Point ((int)(width * Math.random())-50,(int)(Math.random()* -20)),"Images/blockblack.png");
-				objects.add(plat);
-			}
-		}
-		*/
-		if (runTime >= 7){
-			System.out.println(runTime + "    <--   RunTime");
+
+		if (player.point.y  < abstand - 130 ){
 
 			for (int i = 0; i<7; i++ ){
-				plat = new DoodlePlatform(new Point ((int)(width * Math.random()),(int)(Math.random()* -10)-yVariable),"Images/blockblack.png");
+				plat = new DoodlePlatform(new Point ((int)(width * Math.random()*0.7),(int)(Math.random()* -10)-yVariable),"Images/blockblack.png");
 				objects.add(plat);
-				yVariable += 64;
+				yVariable += 50;
 
 			}
 			yVariable = 0;
+			abstand = player.point.y; 
 			return true;
 		}
 
@@ -132,52 +121,12 @@ public class DoodleBackground{
 		}
 	}
 
-//	public void playerMoveUp () {
-//
-//		int speed = -128;
-//		System.out.println(player.point.x+ " :X  " + player.point.y + " :Y");
-//
-//
-//		while(speed < -1) {
-//			speed = speed /2;
-//			player.point = new Point(player.point.x, (player.point.y + speed));
-//			System.out.println(player.point.x+ " :X  " + player.point.y + " :Y");
-//		}
-//		while (speed == -1) {
-//			speed = 0;
-//			player.point = new Point(player.point.x, (player.point.y + speed));
-//
-//		}
-//		while (speed == 0) {
-//			speed = 1;
-//			player.point = new Point(player.point.x, (player.point.y + speed));
-//			System.out.println(player.point.x+ " :X  " + player.point.y + " :Y");
-//
-//		}
-//		while (speed >= 1) {
-//			if (speed< 64)speed = speed *2;
-//			player.point = new Point(player.point.x, (player.point.y + speed));
-//			System.out.println(player.point.x+ " :X  " + player.point.y + " :Y");
-//			if(player.point.y > 800) break;
-//		}
-//
-//	}
-//	public Point newPlayerMoveUp(int speed) {
-//		while(speed < -1) {
-//			speed = speed /2;
-//			return new Point(player.point.x, (player.point.y + speed));
-//		}
-//		return null;
-//	}
-//	public void newPlayerPoint (Point point){
-//		player.point = point;
-//	}
+
 
 
 	public void moveAll () {
 		for(DoodleObject o: objects) {
 			o.move();
-//			teleportToBorder();
 		}
 	}
 }

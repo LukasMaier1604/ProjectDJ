@@ -34,7 +34,6 @@ public class DoodleAPP extends JFrame{
 	private boolean spielLaeuft = true;
 	private Closingclass cc;
 	private int closeCommand;
-	public int runTime = 0;
 
 
 
@@ -110,15 +109,16 @@ public class DoodleAPP extends JFrame{
 
 		if ((engine.checkCollision(objects)) && (umgebung.getPlayer().getSpeed() > 0)) {
 			umgebung.getPlayer().setSpeed(-13);
-			runTime += 1;
 
 		}
 
 	}
 
 	public void addPlatform() {
-		if(umgebung.generateRadomPlatform(runTime)) {
-			runTime = 0 ;
+		if(umgebung.generateRadomPlatform()) {
+			System.out.println(umgebung.generateRadomPlatform());
+			
+			
 		}
 	}
 
@@ -157,6 +157,8 @@ public class DoodleAPP extends JFrame{
 					jump();
 					addPlatform();
 					moveView();
+					System.out.println(umgebung.getAbstand());
+					System.out.println(umgebung.getPlayer().point.y);
 					
 					try {
 						finished(umgebung.getPlayer());
