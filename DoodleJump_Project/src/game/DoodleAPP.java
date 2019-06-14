@@ -41,7 +41,7 @@ public class DoodleAPP extends JFrame{
 	private Closingclass cc;
 	private int closeCommand;
 	private StartMenue menue;
-	private TreeSet<Spielstand> highscores;
+	private TreeSet<Spielstand> highscores;								//zentrale Lage des Sets, da 2mal aufgerufen (ClosingClass und Highscore)
 
 	public DoodleAPP(StartMenue menue) {
 		this();
@@ -257,33 +257,6 @@ public class DoodleAPP extends JFrame{
 			}catch(Exception o) {
 				o.printStackTrace();
 		}
-
-
-
-
-
-
-
-
-
-//			this.addWindowListener(new WindowAdapter(){
-//
-//				@Override
-//				public void windowClosing(WindowEvent e) {
-//
-//						cc = new Closingclass();
-//						int result = JOptionPane.showConfirmDialog(
-//						           cc,
-//						            "Spiel beendet. Zur�ck zum Hauptmen�",
-//						            "Exit Application",
-//						            JOptionPane.YES_NO_OPTION);
-//
-//						if (result == JOptionPane.YES_OPTION)
-//				            cc.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//						}
-//				});
-//
-//			cc.setVisible(true);
 		}
 	}
 

@@ -24,8 +24,6 @@ public class Overlay extends JPanel{
 		ImagePanel();
 		this.setBackground(Color.WHITE);
 		setArea();
-		
-
 	}
 	public void ImagePanel() {
 	       try {                
