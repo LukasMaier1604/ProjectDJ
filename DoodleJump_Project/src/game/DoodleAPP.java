@@ -34,10 +34,14 @@ public class DoodleAPP extends JFrame{
 	private boolean spielLaeuft = true;
 	private Closingclass cc;
 	private int closeCommand;
+	private StartMenue menue;
 
 
 
-
+	public DoodleAPP(StartMenue menue) {
+		this();
+		this.menue = menue;
+	}
 
 	public DoodleAPP() {
 
@@ -138,6 +142,10 @@ public class DoodleAPP extends JFrame{
 	public void objektSteuern() {
 		keyControl();
 	}
+	
+	public StartMenue returnSM() {
+		return menue;
+	}
 
 	public void setcloseCommand(int eingabe){
 		closeCommand = eingabe;
@@ -200,9 +208,10 @@ public class DoodleAPP extends JFrame{
 	}
 
 	public void switching(int var){
-
+		
 		switch (var){
-		case 1: this.dispose();
+		case 1: 
+			this.dispose();
 			break;
 		case 2: System.exit(1);
 			break;

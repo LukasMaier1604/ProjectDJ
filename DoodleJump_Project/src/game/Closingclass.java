@@ -10,6 +10,9 @@ import javax.swing.JButton;
 import java.awt.GridLayout;
 import javax.swing.BoxLayout;
 import java.awt.event.ActionListener;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.Writer;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextArea;
 import java.awt.Font;
@@ -71,6 +74,7 @@ public class Closingclass extends JFrame {
 				
 						retry = new JButton("Nochmal");
 						panel_3.add(retry);
+						retry.setEnabled(false);
 						retry.setHorizontalAlignment(SwingConstants.RIGHT);
 						retry.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		setBounds(5, 5, 366,220);
@@ -115,6 +119,32 @@ public class Closingclass extends JFrame {
 }
 	
 	public void exit() {
+		writeScore();
 		this.dispose();
+	}
+	
+	public void writeScore() {
+		
+		Writer wert = null;
+		String score = "456";
+		
+		try {
+			wert = new FileWriter("score.txt");
+			if(Integer.valueOf(score) > Integer.valueOf(app.returnSM().getTextFromField())) {
+				wert.write(score);
+				app.returnSM().updateScore(score);
+			}
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		if(wert != null)
+			try {
+				wert.close();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 	}
 }
