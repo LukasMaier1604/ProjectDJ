@@ -15,6 +15,11 @@ import javax.swing.BoxLayout;
 import java.awt.Panel;
 import javax.swing.SwingConstants;
 import java.awt.event.ActionListener;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.Reader;
 import java.awt.event.ActionEvent;
 import java.awt.Component;
 import java.awt.EventQueue;
@@ -31,7 +36,7 @@ public class StartMenue extends JFrame {
 	private JPanel panel_1;
 	private JPanel panel_2;
 	private JPanel panel_3;
-	private JTextField txtPlayer;
+	private JTextField txtPlayer, textField, txtScore;
 
 
 	public StartMenue(DoodleAPP app) {
@@ -51,6 +56,12 @@ public class StartMenue extends JFrame {
 
 		score = new JButton("Highscore");
 		panel_1.add(score);
+		
+		txtScore = new JTextField();
+		txtScore.setHorizontalAlignment(SwingConstants.RIGHT);
+		panel_1.add(txtScore);
+		txtScore.setText(inputScore());
+		txtScore.setColumns(10);
 
 		panel_2 = new JPanel();
 		FlowLayout flowLayout_1 = (FlowLayout) panel_2.getLayout();
@@ -87,7 +98,7 @@ public class StartMenue extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 
 				try {
-					app = new DoodleAPP();
+					app = new DoodleAPP(returnMe());
 					app.setVisible(true);
 				}catch(Exception o) {
 					o.printStackTrace();
@@ -97,4 +108,41 @@ public class StartMenue extends JFrame {
 
 		});
 };
+
+
+	public StartMenue returnMe() {
+		return this;
+	}
+	public String inputScore() {
+
+		Reader input = null;
+		String score = "";
+		
+		try {
+			input= new FileReader("score.txt");
+			for(int v; (v = input.read()) != -1;) {
+				System.out.println((char) v);
+				score += (char) v;
+			}
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+//			e.printStackTrace();
+			return "0";
+		}
+		try {
+			input.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return score;
+	}
+	
+	public void updateScore(String wert) {
+		txtScore.setText(wert);
+	}
+	
+	public String getTextFromField() {
+		return txtScore.getText();
+	}
 }
