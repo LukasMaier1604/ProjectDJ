@@ -119,7 +119,7 @@ public class DoodleAPP extends JFrame{
 	public boolean jump() {
 
 		if ((engine.checkCollision(objects)) && (umgebung.getPlayer().getSpeed() > 0)) {
-			umgebung.getPlayer().setSpeed(-13);
+			umgebung.getPlayer().setSpeed(-14);
 			addPlatform();
 			return true;
 
@@ -176,7 +176,7 @@ public class DoodleAPP extends JFrame{
 					jump();
 					addPlatform();
 					moveView();
-					System.out.println(umgebung.getAbstand());
+//					System.out.println(umgebung.getAbstand());
 					
 					try {
 						finished(umgebung.getPlayer());
@@ -292,9 +292,9 @@ public class DoodleAPP extends JFrame{
 		if (umgebung.getPlayer().getPoint().y < 250) {
 			for( DoodleObject o : umgebung.getObjects()){
 				if(!o.equals(umgebung.getPlayer())) {
-					System.out.println("runter");
-					o.setSpeed(7);
-					if(umgebung.getPlayer().getPoint().y < 150)umgebung.getPlayer().setSpeed(0);
+//					System.out.println("runter");
+					o.setSpeed(9);
+					if(umgebung.getPlayer().getPoint().y < 150)umgebung.getPlayer().setSpeed(7);
 					
 				}
 			}
@@ -330,7 +330,7 @@ public class DoodleAPP extends JFrame{
 	
 	public void abstandsAnpassung() {
 		if(engine.gleich == false) {
-			System.out.println(umgebung.getObjectSpeed());
+//			System.out.println(umgebung.getObjectSpeed());
 			umgebung.setAbstand((umgebung.getObjectSpeed())+umgebung.getAbstand());
 		}
 	}

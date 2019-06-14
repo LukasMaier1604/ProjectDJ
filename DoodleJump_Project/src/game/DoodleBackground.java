@@ -87,7 +87,7 @@ public class DoodleBackground{
 	}
 
 
-	public boolean bottomReached(DoodlePlayer player) {
+	public boolean bottomReached(DoodleObject player) {
 		if (player.getPoint().y >= this.height) {
 			return true;
 		}
@@ -102,7 +102,7 @@ public class DoodleBackground{
 
 			DoodleObject plat = new DoodlePlatform(new Point ((int)(width * Math.random()*0.7),y),"Images/blockblack.png");
 			objects.add(plat);
-			y+=50;
+			y+=70;
 		}
 		abstand = player.getPoint().y; 
 		
@@ -112,13 +112,26 @@ public class DoodleBackground{
 
 	public boolean generateRadomPlatform() {
 		DoodlePlatform plat;
-		System.out.println(abstand + " ABSTAND");
+		DoodleObject remove = null;
+		boolean liste = true;
+//		System.out.println(abstand + " ABSTAND");
 //		System.out.println((abstand+200) + " ABSTAND +200");
-		System.out.println(player.getPoint().y + " PLAYER Y");
+//		System.out.println(player.getPoint().y + " PLAYER Y");
 		plat = new DoodlePlatform(new Point ((int)(width * Math.random()*0.7),(int)(Math.random()* -10)-yVariable),"Images/blockblack.png");
 		objects.add(plat);
-		yVariable += 50;
-
+		yVariable += 70;
+		while(liste) {
+			for(DoodleObject o: objects) {
+				if(bottomReached(o)) {
+					remove = o;
+					liste = true;
+					break;
+				}
+				else liste = false;
+			
+			}
+			objects.remove(remove);
+		}
 			
 			return true;
 

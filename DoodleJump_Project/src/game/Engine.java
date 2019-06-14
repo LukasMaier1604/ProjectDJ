@@ -20,7 +20,7 @@ public class Engine {
 	
 	public boolean checkCollision(ArrayList<DoodleObject> objects) {
 		for(DoodleObject object : objects) {
-			System.out.println(gleich);
+//			System.out.println(gleich);
 //			System.out.println(object.point.y + "Y CORD PLAT");
 //			System.out.println(player.point.y + "Y CORD PLAYER");
 			if(((player.getPoint().y + player.getHeight() >= (object.getPoint().y +object.getHeight() -5 )
