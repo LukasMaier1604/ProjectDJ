@@ -118,7 +118,7 @@ public class Closingclass extends JFrame {
 		});
 }
 	
-	public void exit() {
+	public void exit() {								// TreeSet und Spielstände überprüfen tba
 		writeScore();
 		this.dispose();
 	}
@@ -126,7 +126,7 @@ public class Closingclass extends JFrame {
 	public void writeScore() {
 		
 		Writer wert = null;
-		String score = "456";
+		String score = String.valueOf(app.getScore());
 		
 		try {
 			wert = new FileWriter("score.txt");

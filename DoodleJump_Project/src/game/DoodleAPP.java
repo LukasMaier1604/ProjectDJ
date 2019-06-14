@@ -26,7 +26,7 @@ import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 import java.util.TreeSet;
 
-public class DoodleAPP extends JFrame implements Comparable{
+public class DoodleAPP extends JFrame{
 
 	private JPanel contentPane;
 	private Overlay myOverlay;
@@ -41,7 +41,7 @@ public class DoodleAPP extends JFrame implements Comparable{
 	private Closingclass cc;
 	private int closeCommand;
 	private StartMenue menue;
-	private TreeSet<String> highscores;
+	private TreeSet<Spielstand> highscores;
 
 	public DoodleAPP(StartMenue menue) {
 		this();
@@ -112,10 +112,6 @@ public class DoodleAPP extends JFrame implements Comparable{
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
 	}
-
-
-
-
 	public boolean jump() {
 
 		if ((engine.checkCollision(objects)) && (umgebung.getPlayer().getSpeed() > 0)) {
@@ -125,7 +121,6 @@ public class DoodleAPP extends JFrame implements Comparable{
 
 		}
 		else return false;
-
 	}
 
 	public void addPlatform() {
@@ -136,7 +131,7 @@ public class DoodleAPP extends JFrame implements Comparable{
 		}
 	}
 
-	public void addToHighscores(String s) {
+	public void addToHighscores(Spielstand s) {
 		highscores.add(s);
 	}
 
@@ -341,11 +336,5 @@ public class DoodleAPP extends JFrame implements Comparable{
 		}
 	}
 
-	
-	@Override
-	public int compareTo(Object o) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
 
 }
