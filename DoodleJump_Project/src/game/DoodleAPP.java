@@ -19,8 +19,9 @@ import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.ArrayList;
+import java.util.TreeSet;
 
-public class DoodleAPP extends JFrame{
+public class DoodleAPP extends JFrame implements Comparable{
 
 	private JPanel contentPane;
 	private Overlay myOverlay;
@@ -35,8 +36,7 @@ public class DoodleAPP extends JFrame{
 	private Closingclass cc;
 	private int closeCommand;
 	private StartMenue menue;
-
-
+	private TreeSet<String> highscores;
 
 	public DoodleAPP(StartMenue menue) {
 		this();
@@ -126,7 +126,13 @@ public class DoodleAPP extends JFrame{
 		}
 	}
 
+	public void addToHighscores(String s) {
+		highscores.add(s);
+	}
 
+	public TreeSet getHighscores() {
+		return highscores;
+	}
 	public ArrayList<DoodleObject> getObjects(){
 		return objects;
 	}
@@ -295,20 +301,11 @@ public class DoodleAPP extends JFrame{
 
 	}
 
-//	public int calculateJump(){
-//		int restSpeed = umgebung.getPlayer().getSpeed()*-1;
-//		int restMove = 0;
-//		for(int i = 0; i <= restSpeed; i++){
-//			restMove = restMove + (restSpeed - i);
-//		}
-//		System.out.println(restMove);
-//		return restMove;
-//	}
-
-
-
-
-
-
+	
+	@Override
+	public int compareTo(Object o) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 
 }
