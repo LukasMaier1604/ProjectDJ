@@ -1,4 +1,4 @@
-package game;
+package models;
 
 import java.awt.Point;
 
@@ -20,7 +20,8 @@ public class DoodlePlatform extends DoodleObject{
 
 
 	}
-
+	
+	@Override
 	public int getSpeed(){
 		return speed;
 	}

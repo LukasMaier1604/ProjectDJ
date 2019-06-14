@@ -4,6 +4,10 @@ import java.awt.Point;
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
+import models.DoodleObject;
+import models.DoodlePlatform;
+import models.DoodlePlayer;
+
 public class DoodleBackground{
 	private Point bottomPoint;		// Punkt der links-unteren Ecke
 	private int width;
@@ -17,20 +21,31 @@ public class DoodleBackground{
 																// zur Darstellung muss der springende Punkt auch in die Liste
 																// einfache if/not-Abfrage f�r die Plattformen sp�ter
 
+	public void setAbstand(int abstand) {
+		this.abstand = abstand;
+	}
+
 	public int getAbstand() {
 		return abstand;
 	}
-
+	
 	public DoodleBackground(int width, int height) {
 		this.width = width;
 		this.height = height;
 		objects = new ArrayList<>();
 		bottomPoint = new Point(0,height);
 		//f�r die Startposition
-		player = new DoodlePlayer( new Point(width/2 -30, height/2-40), 30, 30, "Doodle");
+		player = new DoodlePlayer( new Point(width/2 -30, height/2-40), 70, 70, "Doodle");
 		objects.add(player);
 	}
 
+	
+	public int getObjectSpeed() {
+		for(DoodleObject o: objects) {
+			if(!o.equals(player)) return o.getSpeed();
+		}
+	return 0;
+	}
 	public DoodlePlayer getPlayer() {
 		return player;
 	}
@@ -60,20 +75,20 @@ public class DoodleBackground{
 
 	public void teleportToBorder() {
 		Point newPosition;
-		if (player.point.x <= bottomPoint.x) {
-			newPosition = new Point(player.point.x + width -player.getWidth(),player.point.y);
-			player.point = newPosition;
+		if (player.getPoint().x <= bottomPoint.x) {
+			newPosition = new Point(player.getPoint().x + width -player.getWidth(),player.getPoint().y);
+			player.setPoint(newPosition);
 		}
-		if (player.point.x >= (bottomPoint.x + width)) {
-			newPosition = new Point(player.point.x - width,player.point.y);
-			player.point = newPosition;
+		if (player.getPoint().x >= (bottomPoint.x + width)) {
+			newPosition = new Point(player.getPoint().x - width,player.getPoint().y);
+			player.setPoint(newPosition);
 		}
 
 	}
 
 
 	public boolean bottomReached(DoodlePlayer player) {
-		if (player.point.y >= this.height) {
+		if (player.getPoint().y >= this.height) {
 			return true;
 		}
 
@@ -89,7 +104,7 @@ public class DoodleBackground{
 			objects.add(plat);
 			y+=50;
 		}
-		abstand = player.point.y; 
+		abstand = player.getPoint().y; 
 		
 	
 	}
@@ -97,21 +112,15 @@ public class DoodleBackground{
 
 	public boolean generateRadomPlatform() {
 		DoodlePlatform plat;
+		System.out.println(abstand + " ABSTAND");
+//		System.out.println((abstand+200) + " ABSTAND +200");
+		System.out.println(player.getPoint().y + " PLAYER Y");
+		plat = new DoodlePlatform(new Point ((int)(width * Math.random()*0.7),(int)(Math.random()* -10)-yVariable),"Images/blockblack.png");
+		objects.add(plat);
+		yVariable += 50;
 
-		if (player.point.y  < abstand - 130 ){
-
-			for (int i = 0; i<7; i++ ){
-				plat = new DoodlePlatform(new Point ((int)(width * Math.random()*0.7),(int)(Math.random()* -10)-yVariable),"Images/blockblack.png");
-				objects.add(plat);
-				yVariable += 50;
-
-			}
-			yVariable = 0;
-			abstand = player.point.y; 
+			
 			return true;
-		}
-
-		return false;
 
 	}
 	public void getConsoleObjects() {

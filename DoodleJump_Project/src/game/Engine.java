@@ -2,10 +2,15 @@ package game;
 
 import java.util.ArrayList;
 
+import models.DoodleObject;
+import models.DoodlePlayer;
+
 public class Engine {
 	private DoodleAPP app;
 	private DoodlePlayer player;
 	private DoodleBackground umgebung;
+	private DoodleObject aktuel = null;
+	public boolean gleich = true;
 	
 	public Engine (DoodleAPP app) {
 		this.app = app;
@@ -15,16 +20,19 @@ public class Engine {
 	
 	public boolean checkCollision(ArrayList<DoodleObject> objects) {
 		for(DoodleObject object : objects) {
+			System.out.println(gleich);
 //			System.out.println(object.point.y + "Y CORD PLAT");
 //			System.out.println(player.point.y + "Y CORD PLAYER");
-			if(((player.point.y + player.height >= (object.point.y +object.height -10 )
-					&& player.point.y <= (object.point.y +10))		
+			if(((player.getPoint().y + player.getHeight() >= (object.getPoint().y +object.getHeight() -5 )
+					&& player.getPoint().y <= (object.getPoint().y +5))		
 					&& !object.equals(player))
-					&& ((player.point.x + player.width) > object.point.x			//X Achse
-					&& player.point.x < (object.point.x + object.width))) 
-
-				
+					&& ((player.getPoint().x + player.getWidth()) > object.getPoint().x			//X Achse
+					&& player.getPoint().x < (object.getPoint().x + object.getWidth()))&& player.getSpeed()>0) {
+				if (object.equals(aktuel)) gleich = true;
+				if (!object.equals(aktuel)) gleich = false;
+				aktuel = object;
 				return true;
+			}
 		}
 		return false;
 	}

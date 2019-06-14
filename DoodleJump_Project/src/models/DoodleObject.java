@@ -1,4 +1,4 @@
-package game;
+package models;
 
 import java.awt.Point;
 import java.awt.image.BufferedImage;
@@ -90,5 +90,6 @@ public abstract class DoodleObject {
 	
 	public abstract void move();
 	public abstract void setSpeed(int x);
+	public abstract int getSpeed();
 	
 }

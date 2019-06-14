@@ -1,5 +1,6 @@
 package game;
 
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -10,6 +11,10 @@ import java.awt.Color;
 import java.awt.Frame;
 
 import javax.swing.border.EmptyBorder;
+
+import models.DoodleObject;
+import models.DoodlePlayer;
+
 import java.awt.GridLayout;
 import java.awt.KeyboardFocusManager;
 import java.awt.Point;
@@ -28,7 +33,7 @@ public class DoodleAPP extends JFrame{
 	private ArrayList<DoodleObject> objects;
 	private ArrayList<DoodleObject> objectsActive = new ArrayList<>();
 	private Engine engine;
-	private int score = 20;
+	private int score = 0;
 	private Timer timer;
 	private ArrayList<Integer> keysPressed = new ArrayList<>();
 	private boolean spielLaeuft = true;
@@ -42,10 +47,9 @@ public class DoodleAPP extends JFrame{
 	public DoodleAPP() {
 
 		umgebung = new DoodleBackground(350, 800);
-
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		contentPane.setBackground(Color.WHITE);
+//		contentPane.setBackground(Color.WHITE);
 		getContentPane().add(contentPane, BorderLayout.CENTER);
 		contentPane.setLayout(new BorderLayout(0, 0));
 		JPanel panel_1 = new JPanel();
@@ -91,6 +95,9 @@ public class DoodleAPP extends JFrame{
 
 
 	}
+	public int getScore() {
+		return score;
+	}
 
 
 	public DoodleBackground getUmgebung() {
@@ -105,19 +112,22 @@ public class DoodleAPP extends JFrame{
 
 
 
-	public void jump() {
+	public boolean jump() {
 
 		if ((engine.checkCollision(objects)) && (umgebung.getPlayer().getSpeed() > 0)) {
 			umgebung.getPlayer().setSpeed(-13);
+			addPlatform();
+			return true;
 
 		}
+		else return false;
 
 	}
 
 	public void addPlatform() {
-		if(umgebung.generateRadomPlatform()) {
-			System.out.println(umgebung.generateRadomPlatform());
-			
+		if(engine.gleich == false) {
+			umgebung.generateRadomPlatform();
+			score++;
 			
 		}
 	}
@@ -154,11 +164,11 @@ public class DoodleAPP extends JFrame{
 					umgebung.teleportToBorder();
 					updatePosition(frames);
 					umgebung.moveAll();
+					abstandsAnpassung();
 					jump();
 					addPlatform();
 					moveView();
 					System.out.println(umgebung.getAbstand());
-					System.out.println(umgebung.getPlayer().point.y);
 					
 					try {
 						finished(umgebung.getPlayer());
@@ -269,21 +279,51 @@ public class DoodleAPP extends JFrame{
 
 
 	public void moveView() {
-		if (umgebung.getPlayer().point.y <= 200){
+		boolean test = true;
+		if (umgebung.getPlayer().getPoint().y < 250) {
 			for( DoodleObject o : umgebung.getObjects()){
-				if(!o.equals(umgebung.getPlayer()))
-					if(umgebung.getPlayer().getSpeed() <0) o.setSpeed((umgebung.getPlayer().getSpeed())*-1);
-
+				if(!o.equals(umgebung.getPlayer())) {
+					System.out.println("runter");
+					o.setSpeed(7);
+					if(umgebung.getPlayer().getPoint().y < 150)umgebung.getPlayer().setSpeed(0);
+					
+				}
 			}
-
 		}
-		if (umgebung.getPlayer().point.y > 200){
+		if(umgebung.getPlayer().getPoint().y > 250) {
 			for( DoodleObject o : umgebung.getObjects()){
 				if(!o.equals(umgebung.getPlayer())) o.setSpeed(0);
-
 			}
 		}
+		if (umgebung.getPlayer().getPoint().y < 0) 
+			for( DoodleObject o : umgebung.getObjects()){
+				if(!o.equals(umgebung.getPlayer())) o.setSpeed(10); 
+			}
+		if (umgebung.getPlayer().getPoint().y <20) umgebung.getPlayer().setSpeed(0);
+		
+		
+//		if (umgebung.getPlayer().point.y <= 200 && engine.gleich == false){
+//			for( DoodleObject o : umgebung.getObjects()){
+//				if(!o.equals(umgebung.getPlayer()))
+//					if(umgebung.getPlayer().getSpeed() <0) o.setSpeed((umgebung.getPlayer().getSpeed())*-1);
+//
+//			}
+//
+//		}
+//		if (umgebung.getPlayer().point.y > 200){
+//			for( DoodleObject o : umgebung.getObjects()){
+//				if(!o.equals(umgebung.getPlayer())) o.setSpeed(0);
+//
+//			}
+//		}
 
+	}
+	
+	public void abstandsAnpassung() {
+		if(engine.gleich == false) {
+			System.out.println(umgebung.getObjectSpeed());
+			umgebung.setAbstand((umgebung.getObjectSpeed())+umgebung.getAbstand());
+		}
 	}
 
 //	public int calculateJump(){

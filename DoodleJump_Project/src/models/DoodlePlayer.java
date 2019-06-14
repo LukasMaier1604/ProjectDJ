@@ -1,4 +1,4 @@
-package game;
+package models;
 
 import java.awt.Point;
 
@@ -10,7 +10,7 @@ public class DoodlePlayer extends DoodleObject{
 
 
 	public DoodlePlayer (Point point, int width, int height, String name) {
-		super (point,width,height,"Images/Kreis.png");
+		super (point,width,height,"Images/player_Lebkuchen.png");
 		this.name = name;
 
 	}
@@ -37,6 +37,7 @@ public class DoodlePlayer extends DoodleObject{
 			e.printStackTrace();
 		}
 		this.point = newPlayerMoveUp(speed);
+		
 
 	}
 
@@ -49,7 +50,7 @@ public class DoodlePlayer extends DoodleObject{
 	public void setSpeed(int x) {
 		this.speed = x;
 	}
-
+	@Override
 	public int getSpeed() {
 		return this.speed;
 	}
