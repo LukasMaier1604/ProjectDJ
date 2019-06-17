@@ -28,6 +28,8 @@ import javax.swing.Box;
 import java.awt.Button;
 import com.jgoodies.forms.factories.DefaultComponentFactory;
 
+import view.DoodleAPP;
+
 public class StartMenue extends JFrame {
 
 	private DoodleAPP app;

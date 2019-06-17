@@ -2,6 +2,8 @@ package game;
 
 import java.awt.EventQueue;
 
+import view.DoodleAPP;
+
 public class App {
 
 	private static DoodleAPP spiel;

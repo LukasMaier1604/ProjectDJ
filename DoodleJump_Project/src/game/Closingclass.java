@@ -20,6 +20,9 @@ import javax.swing.SwingConstants;
 import java.awt.FlowLayout;
 import javax.swing.JLabel;
 import com.jgoodies.forms.factories.DefaultComponentFactory;
+
+import view.DoodleAPP;
+
 import javax.swing.border.EmptyBorder;
 import java.awt.Color;
 import java.awt.SystemColor;
