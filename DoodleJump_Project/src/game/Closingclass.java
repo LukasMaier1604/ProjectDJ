@@ -130,44 +130,38 @@ public class Closingclass extends JFrame {
 	
 	public void finalStatusScore() {				
 		
-		Map<String, Integer> temp = new HashMap<>();	
+		Map<String, Integer> temp = new HashMap<>();
 		temp.put(app.returnSM().getTextFromField(), app.getScore());
-
+	
 		Map<String, Integer> vergleich = app.getSpielstand().dontDoIt();
+		if(vergleich == null) {
+			vergleich = new HashMap<String, Integer>();
+			vergleich.putAll(temp);
+		}else if (vergleich.size() > 4) {
+			vergleich.clear();
+			vergleich.putAll(temp);
+		}else {
+			vergleich.putAll(temp);
+		}
 		
-		for(Map.Entry<String, Integer> entry : vergleich.entrySet()) {
-			if(vergleich.get(app.returnSM().getTextFromField()) > entry.getValue()) {
-				vergleich.remove(entry.getKey(), entry.getValue());
-				vergleich.putAll(temp);
-			}
+//	vergleich.forEach((k, v) ->{
+//		
+//		for(Map.Entry<String, Integer> entry : vergleich.entrySet()) {
+//			if(temp.get(app.returnSM().getTextFromField()) > entry.getValue() && vergleich.size() == 5) {
+//				vergleich.remove(entry.getKey(), entry.getValue());
+//				vergleich.putAll(temp);
+//			}if(vergleich.size() < 5){
+//				vergleich.putAll(temp);
+//			}
 			
 		writeScore(vergleich);
 		}
 		
-		
-	}
+
 	
 	public void writeScore(Map<String, Integer> map) {
 		
 		app.getSpielstand().doIt(map);
 		
-		
-//		Writer wert = null;
-//		String score = String.valueOf(app.getScore());
-//		try {
-//			wert = new FileWriter("score.txt");
-//				wert.write(score);
-//		} catch (IOException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//
-//		if(wert != null)
-//			try {
-//				wert.close();
-//			} catch (IOException e) {
-//				// TODO Auto-generated catch block
-//				e.printStackTrace();
-//			}
 	}
 }

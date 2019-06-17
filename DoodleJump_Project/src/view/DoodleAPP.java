@@ -125,7 +125,8 @@ public class DoodleAPP extends JFrame implements Comparable{
 	}
 
 	public Spielstand getSpielstand() {
-		return spielstand;
+		Spielstand spielen = new Spielstand();
+		return spielen;
 	}
 
 	public DoodleBackground getUmgebung() {

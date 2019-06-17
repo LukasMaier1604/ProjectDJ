@@ -36,7 +36,7 @@ public class WindowHighscore extends JFrame{
 		text = new JTextArea();
 		text.setWrapStyleWord(true);
 		text.setColumns(5);
-		text.setRows(5);
+		text.setRows(7);
 		panel_1.add(text);
 		
 		panel_2 = new JPanel();
@@ -61,10 +61,13 @@ public class WindowHighscore extends JFrame{
 	}
 	public void loadingScores(Spielstand maps ) {
 
-		Map<String, Integer> vergleich = maps.returnHardCode();
-		for(Map.Entry<String, Integer> entry : vergleich.entrySet()) {
-			text.append(entry.getKey()+" - "+ String.valueOf(entry.getValue())+"\n" );
-			System.out.println(entry.getKey()+ " - "+ entry.getValue());
-		}
+		Map<String, Integer> vergleich = maps.dontDoIt();
+		 vergleich.forEach((k, v) ->{
+			text.append(k+" - "+ String.valueOf(v)+"\n" );
+		 });
+//		for(Map.Entry<String, Integer> entry : vergleich.entrySet()) {
+//			text.append(entry.getKey()+" - "+ String.valueOf(entry.getValue())+"\n" );
+//			System.out.println(entry.getKey()+ " - "+ entry.getValue());
+//		}
 	}
 }

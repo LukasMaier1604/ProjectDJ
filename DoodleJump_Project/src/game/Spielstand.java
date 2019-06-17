@@ -24,7 +24,7 @@ public class Spielstand implements Serializable{
 		highscore.put("Heinz", 100);
 		highscore.put("Lukas", 1);
 		highscore.put("Gustav", 5);
-		highscore.put("Rüdiger", 1600);
+		highscore.put("Karli", 1600);
 	}
 	
 	public Map<String, Integer> returnHardCode(){
@@ -51,14 +51,17 @@ public class Spielstand implements Serializable{
 		}
 	}
 
+	@SuppressWarnings("unchecked")
 	public Map<String, Integer> dontDoIt() {
 		try (FileInputStream fileInput = new FileInputStream(
-				new File(System.getProperty("user.home") + "\\Desktop\\ScoreList.ser"));
+				new File(System.getProperty("user.home") + "\\ScoreList.ser"));
 				ObjectInputStream objInputstream = new ObjectInputStream(fileInput)) {
 			return (Map<String, Integer>)objInputstream.readObject();
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
-			return highscore;
+			Map<String, Integer> temp = new HashMap<>();
+			temp.put("unknown", 0);
+			return temp;
 		} catch (IOException e) {
 			e.printStackTrace();
 		} catch (ClassNotFoundException e) {
