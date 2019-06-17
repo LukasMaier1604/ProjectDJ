@@ -15,6 +15,7 @@ import javax.swing.border.EmptyBorder;
 import controller.DoodleKeyEventDispatcher;
 import controller.Engine;
 import game.Closingclass;
+import game.Spielstand;
 import game.StartMenue;
 import models.DoodleObject;
 import models.DoodlePlayer;
@@ -45,9 +46,9 @@ public class DoodleAPP extends JFrame implements Comparable{
 	private Closingclass cc;
 	private int closeCommand;
 	private StartMenue menue;
-	private TreeSet<String> highscores;
 	private int ausgangSpeed;
 	private int scorePosition = 1000;
+	private Spielstand spielstand;
 
 	public DoodleAPP(StartMenue menue) {
 		this();
@@ -109,7 +110,10 @@ public class DoodleAPP extends JFrame implements Comparable{
 		return score;
 	}
 
-
+	public Spielstand getSpielstand() {
+		return spielstand;
+	}
+	
 	public DoodleBackground getUmgebung() {
 		return umgebung;
 	}
@@ -148,13 +152,7 @@ public class DoodleAPP extends JFrame implements Comparable{
 		}
 	}
 
-	public void addToHighscores(String s) {
-		highscores.add(s);
-	}
 
-	public TreeSet getHighscores() {
-		return highscores;
-	}
 	public ArrayList<DoodleObject> getObjects(){
 		return objects;
 	}
