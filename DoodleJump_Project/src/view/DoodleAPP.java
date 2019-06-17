@@ -15,6 +15,7 @@ import javax.swing.border.EmptyBorder;
 import controller.DoodleKeyEventDispatcher;
 import controller.Engine;
 import game.Closingclass;
+import game.Spielstand;
 import game.StartMenue;
 import models.DoodleObject;
 import models.DoodlePlayer;
@@ -52,6 +53,7 @@ public class DoodleAPP extends JFrame implements Comparable{
 	private JPanel panel;
 	private JLabel scoreLabel;
 	private JLabel lblScore;
+	private Spielstand spielstand;
 
 	public DoodleAPP(StartMenue menue) {
 		this();
@@ -78,13 +80,13 @@ public class DoodleAPP extends JFrame implements Comparable{
 
 		myOverlay = new Overlay(umgebung);								//�hnlich dem Canvas, funktioniert hier noch nicht. bin noch
 		panel_1.add(myOverlay);											//nich sicher ob, dass bei den Plattformen helfen kann.
-		
+
 		panel = new JPanel();
 		contentPane.add(panel, BorderLayout.NORTH);
-		
+
 		lblScore = new JLabel("Score:  ");
 		panel.add(lblScore);
-		
+
 		scoreLabel = new JLabel("New label");
 		panel.add(scoreLabel);
 																		// dazu: Klasse App kann noch nicht gestartet werden. IMG m�sste da sein
@@ -122,6 +124,9 @@ public class DoodleAPP extends JFrame implements Comparable{
 		return score;
 	}
 
+	public Spielstand getSpielstand() {
+		return spielstand;
+	}
 
 	public DoodleBackground getUmgebung() {
 		return umgebung;
@@ -146,7 +151,7 @@ public class DoodleAPP extends JFrame implements Comparable{
 			if (umgebung.getPlayer().getPoint().y <250) {
 				umgebung.getPlayer().setSpeed(-10);
 			}
-			
+
 			return true;
 
 		}
@@ -162,7 +167,7 @@ public class DoodleAPP extends JFrame implements Comparable{
 				score++;
 				scorePosition = umgebung.getPlayer().getPoint().y;
 			}
-			
+
 		}
 	}
 
@@ -181,7 +186,7 @@ public class DoodleAPP extends JFrame implements Comparable{
 	public void objektSteuern() {
 		keyControl();
 	}
-	
+
 	public StartMenue returnSM() {
 		return menue;
 	}
@@ -202,7 +207,7 @@ public class DoodleAPP extends JFrame implements Comparable{
 					setPhysics();
 					setView();
 					System.out.println(score);
-					
+
 					try {
 						finished(umgebung.getPlayer());
 					} catch (InterruptedException e1) {
@@ -210,7 +215,7 @@ public class DoodleAPP extends JFrame implements Comparable{
 						e1.printStackTrace();
 					}
 
-					
+
 					myOverlay.repaint();
 					}else {
 						switching(closeCommand);
@@ -233,13 +238,13 @@ public class DoodleAPP extends JFrame implements Comparable{
 	}
 	public void setPhysics() {
 		jump();
-		addPlatform();	
+		addPlatform();
 	}
 	public void setView() {
 		moveView();
 		updateScoreLabel();
 	}
-	
+
 	public boolean getStatus() {
 		return spielLaeuft;
 	}
@@ -256,9 +261,9 @@ public class DoodleAPP extends JFrame implements Comparable{
 	}
 
 	public void switching(int var){
-		
+
 		switch (var){
-		case 1: 
+		case 1:
 			this.dispose();
 			break;
 		case 2: System.exit(1);
@@ -334,7 +339,7 @@ public class DoodleAPP extends JFrame implements Comparable{
 						umgebung.getPlayer().setSpeed(5);
 						o.setSpeed(4);
 					}
-					
+
 				}
 			}
 		}
@@ -343,13 +348,13 @@ public class DoodleAPP extends JFrame implements Comparable{
 				if(!o.equals(umgebung.getPlayer())) o.setSpeed(0);
 			}
 		}
-		if (umgebung.getPlayer().getPoint().y < 0) 
+		if (umgebung.getPlayer().getPoint().y < 0)
 			for( DoodleObject o : umgebung.getObjects()){
-				if(!o.equals(umgebung.getPlayer())) o.setSpeed(10); 
+				if(!o.equals(umgebung.getPlayer())) o.setSpeed(10);
 			}
 		if (umgebung.getPlayer().getPoint().y <20) umgebung.getPlayer().setSpeed(0);
-		
-		
+
+
 //		if (umgebung.getPlayer().point.y <= 200 && engine.gleich == false){
 //			for( DoodleObject o : umgebung.getObjects()){
 //				if(!o.equals(umgebung.getPlayer()))
@@ -372,21 +377,21 @@ public class DoodleAPP extends JFrame implements Comparable{
 			return ausgangSpeed;
 		}
 		else return 0;
-		
-		
+
+
 	}
 
 
-	
+
 	public void scorePositionAnpassung() {
-		
+
 		System.out.println(scorePosition + "Score Anpassung");
 		scorePosition =((umgebung.getObjectSpeed())+scorePosition);
-		
-	}
-	
 
-	
+	}
+
+
+
 
 	@Override
 	public int compareTo(Object o) {

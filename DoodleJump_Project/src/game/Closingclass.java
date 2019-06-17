@@ -13,6 +13,8 @@ import java.awt.event.ActionListener;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Writer;
+import java.util.HashMap;
+import java.util.Map;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextArea;
 import java.awt.Font;
@@ -121,37 +123,51 @@ public class Closingclass extends JFrame {
 		});
 }
 	
-	public void exit() {								// TreeSet und Spielstände überprüfen tba
+	public void exit() {							
 		finalStatusScore();
 		this.dispose();
 	}
 	
-	public void finalStatusScore() {					// TreeSet füllen und sortieren (falls vorhanden, nicht hinzufügen)
+	public void finalStatusScore() {				
 		
+		Map<String, Integer> temp = new HashMap<>();	
+		temp.put(app.returnSM().getTextFromField(), app.getScore());
+
+		Map<String, Integer> vergleich = app.getSpielstand().dontDoIt();
 		
-		
+		for(Map.Entry<String, Integer> entry : vergleich.entrySet()) {
+			if(vergleich.get(app.returnSM().getTextFromField()) > entry.getValue()) {
+				vergleich.remove(entry.getKey(), entry.getValue());
+				vergleich.putAll(temp);
+			}
+			
+		writeScore(vergleich);
+		}
 		
 		
 	}
 	
-	public void writeScore() {
+	public void writeScore(Map<String, Integer> map) {
 		
-		Writer wert = null;
-		String score = String.valueOf(app.getScore());
-		try {
-			wert = new FileWriter("score.txt");
-				wert.write(score);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		if(wert != null)
-			try {
-				wert.close();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+		app.getSpielstand().doIt(map);
+		
+		
+//		Writer wert = null;
+//		String score = String.valueOf(app.getScore());
+//		try {
+//			wert = new FileWriter("score.txt");
+//				wert.write(score);
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//
+//		if(wert != null)
+//			try {
+//				wert.close();
+//			} catch (IOException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
 	}
 }

@@ -33,6 +33,7 @@ import view.DoodleAPP;
 public class StartMenue extends JFrame {
 
 	private DoodleAPP app;
+	private WindowHighscore window;
 	private JPanel contentPane;
 	private JButton start, score, button_2;
 	private JPanel panel_1;
@@ -86,7 +87,8 @@ public class StartMenue extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 
-		this.gameStart();
+		gameStart();
+		showScores();
 
 	}
 
@@ -107,36 +109,50 @@ public class StartMenue extends JFrame {
 			}
 
 		});
-};
 
+}
+
+	public void showScores() {
+		
+		score.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				window = new WindowHighscore();
+				window.setVisible(true);
+			}
+		});
+		
+	}
 
 	public StartMenue returnMe() {
 		return this;
 	}
-	public String inputScore() {
-
-		Reader input = null;
-		String score = "";
-		
-		try {
-			input= new FileReader("score.txt");
-			for(int v; (v = input.read()) != -1;) {
-				System.out.println((char) v);
-				score += (char) v;
-			}
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
+//	public String inputScore() {
+//
+//		Reader input = null;
+//		String score = "";
+//		
+//		try {
+//			input= new FileReader("score.txt");
+//			for(int v; (v = input.read()) != -1;) {
+//				System.out.println((char) v);
+//				score += (char) v;
+//			}
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+////			e.printStackTrace();
+//			return "0";
+//		}
+//		try {
+//			input.close();
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
 //			e.printStackTrace();
-			return "0";
-		}
-		try {
-			input.close();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return score;
-	}
+//		}
+//		return score;
+//	}
 	
 //	public void updateScore(String wert) {
 //		txtScore.setText(wert);
