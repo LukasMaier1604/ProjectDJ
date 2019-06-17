@@ -24,16 +24,16 @@ public class Overlay extends JPanel{
 		ImagePanel();
 		this.setBackground(Color.WHITE);
 		setArea();
-		
+
 
 	}
 	public void ImagePanel() {
-	       try {                
+	       try {
 	          img = ImageIO.read(new File("Images/background.png"));
 	       } catch (IOException ex) {
 	    	   ex.printStackTrace();
 	       }
-	 }	
+	 }
 
 	public void setArea() {
 	this.setPreferredSize( new Dimension( bg.getWidth(), bg.getHeight() ) );
@@ -46,7 +46,7 @@ public class Overlay extends JPanel{
 			g.setColor(Color.BLACK);
 			g.drawImage(o.getImage(), o.getPoint().x, o.getPoint().y, o.getWidth(), o.getHeight(), null);
 		}
-		
+
 	}
 
 

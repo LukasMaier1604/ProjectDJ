@@ -121,22 +121,26 @@ public class Closingclass extends JFrame {
 		});
 }
 	
-	public void exit() {
-		writeScore();
+	public void exit() {								// TreeSet und Spielstände überprüfen tba
+		finalStatusScore();
 		this.dispose();
+	}
+	
+	public void finalStatusScore() {					// TreeSet füllen und sortieren (falls vorhanden, nicht hinzufügen)
+		
+		
+		
+		
+		
 	}
 	
 	public void writeScore() {
 		
 		Writer wert = null;
-		String score = "456";
-		
+		String score = String.valueOf(app.getScore());
 		try {
 			wert = new FileWriter("score.txt");
-			if(Integer.valueOf(score) > Integer.valueOf(app.returnSM().getTextFromField())) {
 				wert.write(score);
-				app.returnSM().updateScore(score);
-			}
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

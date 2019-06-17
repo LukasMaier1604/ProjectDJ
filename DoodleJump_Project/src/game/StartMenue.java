@@ -38,7 +38,7 @@ public class StartMenue extends JFrame {
 	private JPanel panel_1;
 	private JPanel panel_2;
 	private JPanel panel_3;
-	private JTextField txtPlayer, textField, txtScore;
+	private JTextField txtPlayer, textField;
 
 
 	public StartMenue(DoodleAPP app) {
@@ -58,12 +58,6 @@ public class StartMenue extends JFrame {
 
 		score = new JButton("Highscore");
 		panel_1.add(score);
-		
-		txtScore = new JTextField();
-		txtScore.setHorizontalAlignment(SwingConstants.RIGHT);
-		panel_1.add(txtScore);
-		txtScore.setText(inputScore());
-		txtScore.setColumns(10);
 
 		panel_2 = new JPanel();
 		FlowLayout flowLayout_1 = (FlowLayout) panel_2.getLayout();
@@ -75,7 +69,7 @@ public class StartMenue extends JFrame {
 
 		txtPlayer = new JTextField();
 		txtPlayer.setHorizontalAlignment(SwingConstants.RIGHT);
-		txtPlayer.setText("Doodle1");
+		txtPlayer.setText("PlayerName");
 		panel_2.add(txtPlayer);
 		txtPlayer.setColumns(10);
 
@@ -140,11 +134,11 @@ public class StartMenue extends JFrame {
 		return score;
 	}
 	
-	public void updateScore(String wert) {
-		txtScore.setText(wert);
-	}
-	
+//	public void updateScore(String wert) {
+//		txtScore.setText(wert);
+//	}
+//	
 	public String getTextFromField() {
-		return txtScore.getText();
+		return txtPlayer.getText();
 	}
 }

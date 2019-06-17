@@ -144,7 +144,7 @@ public class DoodleAPP extends JFrame implements Comparable{
 				score++;
 				scorePosition = umgebung.getPlayer().getPoint().y;
 			}
-			
+
 		}
 	}
 
@@ -170,7 +170,7 @@ public class DoodleAPP extends JFrame implements Comparable{
 	public void objektSteuern() {
 		keyControl();
 	}
-	
+
 	public StartMenue returnSM() {
 		return menue;
 	}
@@ -195,7 +195,7 @@ public class DoodleAPP extends JFrame implements Comparable{
 					addPlatform();
 					moveView();
 					System.out.println(score);
-					
+
 					try {
 						finished(umgebung.getPlayer());
 					} catch (InterruptedException e1) {
@@ -203,7 +203,7 @@ public class DoodleAPP extends JFrame implements Comparable{
 						e1.printStackTrace();
 					}
 
-					
+
 					myOverlay.repaint();
 					}else {
 						switching(closeCommand);
@@ -236,9 +236,9 @@ public class DoodleAPP extends JFrame implements Comparable{
 	}
 
 	public void switching(int var){
-		
+
 		switch (var){
-		case 1: 
+		case 1:
 			this.dispose();
 			break;
 		case 2: System.exit(1);
@@ -316,7 +316,7 @@ public class DoodleAPP extends JFrame implements Comparable{
 						umgebung.getPlayer().setSpeed(5);
 						o.setSpeed(4);
 					}
-					
+
 				}
 			}
 		}
@@ -325,13 +325,13 @@ public class DoodleAPP extends JFrame implements Comparable{
 				if(!o.equals(umgebung.getPlayer())) o.setSpeed(0);
 			}
 		}
-		if (umgebung.getPlayer().getPoint().y < 0) 
+		if (umgebung.getPlayer().getPoint().y < 0)
 			for( DoodleObject o : umgebung.getObjects()){
-				if(!o.equals(umgebung.getPlayer())) o.setSpeed(10); 
+				if(!o.equals(umgebung.getPlayer())) o.setSpeed(10);
 			}
 		if (umgebung.getPlayer().getPoint().y <20) umgebung.getPlayer().setSpeed(0);
-		
-		
+
+
 //		if (umgebung.getPlayer().point.y <= 200 && engine.gleich == false){
 //			for( DoodleObject o : umgebung.getObjects()){
 //				if(!o.equals(umgebung.getPlayer()))
@@ -354,12 +354,12 @@ public class DoodleAPP extends JFrame implements Comparable{
 			return ausgangSpeed;
 		}
 		else return 0;
-		
-		
+
+
 	}
 
 
-	
+
 	public void abstandsAnpassung() {
 		if(engine.gleich == false) {
 //			System.out.println(umgebung.getObjectSpeed());
@@ -367,7 +367,7 @@ public class DoodleAPP extends JFrame implements Comparable{
 		}
 	}
 
-	
+
 	@Override
 	public int compareTo(Object o) {
 		// TODO Auto-generated method stub
