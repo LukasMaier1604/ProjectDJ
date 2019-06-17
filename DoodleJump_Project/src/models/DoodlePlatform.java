@@ -6,7 +6,7 @@ public class DoodlePlatform extends DoodleObject{
 	public int speed = 0;
 
 	public DoodlePlatform ( Point point, String imgPath) {
-		super(point, 70, 15, imgPath);							/*Standard Platform
+		super(point, 70, 20, imgPath);							/*Standard Platform
 																* aktuell 100x10
 																* Nur hier bitte anpassen
 																*/
@@ -17,7 +17,7 @@ public class DoodlePlatform extends DoodleObject{
 	@Override
 	public void move() {
 		this.point = new Point(this.point.x, (this.point.y + speed));
-
+		
 
 	}
 	
