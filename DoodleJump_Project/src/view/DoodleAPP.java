@@ -29,8 +29,6 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 import java.util.TreeSet;
-import javax.swing.JTextField;
-import javax.swing.JLabel;
 
 public class DoodleAPP extends JFrame implements Comparable{
 
@@ -47,11 +45,9 @@ public class DoodleAPP extends JFrame implements Comparable{
 	private Closingclass cc;
 	private int closeCommand;
 	private StartMenue menue;
+	private TreeSet<String> highscores;
 	private int ausgangSpeed;
 	private int scorePosition = 1000;
-	private JPanel panel;
-	private JLabel scoreLabel;
-	private JLabel lblScore;
 
 	public DoodleAPP(StartMenue menue) {
 		this();
@@ -78,15 +74,6 @@ public class DoodleAPP extends JFrame implements Comparable{
 
 		myOverlay = new Overlay(umgebung);								//�hnlich dem Canvas, funktioniert hier noch nicht. bin noch
 		panel_1.add(myOverlay);											//nich sicher ob, dass bei den Plattformen helfen kann.
-		
-		panel = new JPanel();
-		contentPane.add(panel, BorderLayout.NORTH);
-		
-		lblScore = new JLabel("Score:  ");
-		panel.add(lblScore);
-		
-		scoreLabel = new JLabel("New label");
-		panel.add(scoreLabel);
 																		// dazu: Klasse App kann noch nicht gestartet werden. IMG m�sste da sein
 		this.objects = umgebung.getObjects();
 //		for(int i =0; i<= objects.size(); i++) {
@@ -143,10 +130,6 @@ public class DoodleAPP extends JFrame implements Comparable{
 			if(engine.gleich) {
 				umgebung.getPlayer().setSpeed(-17);
 			}
-			if (umgebung.getPlayer().getPoint().y <250) {
-				umgebung.getPlayer().setSpeed(-10);
-			}
-			
 			return true;
 
 		}
@@ -157,15 +140,21 @@ public class DoodleAPP extends JFrame implements Comparable{
 	public void addPlatform() {
 		if(engine.gleich == false) {
 			umgebung.generateRadomPlatform();
-			scorePositionAnpassung();
 			if(umgebung.getPlayer().getSpeed()<0 && scorePosition> umgebung.getPlayer().getPoint().y) {
 				score++;
 				scorePosition = umgebung.getPlayer().getPoint().y;
 			}
-			
+
 		}
 	}
 
+	public void addToHighscores(String s) {
+		highscores.add(s);
+	}
+
+	public TreeSet getHighscores() {
+		return highscores;
+	}
 	public ArrayList<DoodleObject> getObjects(){
 		return objects;
 	}
@@ -181,7 +170,7 @@ public class DoodleAPP extends JFrame implements Comparable{
 	public void objektSteuern() {
 		keyControl();
 	}
-	
+
 	public StartMenue returnSM() {
 		return menue;
 	}
@@ -198,11 +187,15 @@ public class DoodleAPP extends JFrame implements Comparable{
 			@Override
 			public void actionPerformed( ActionEvent e){
 				if(spielLaeuft == true) {
-					setMovement(frames);
-					setPhysics();
-					setView();
+					umgebung.teleportToBorder();
+					updatePosition(frames);
+					umgebung.moveAll();
+					abstandsAnpassung();
+					jump();
+					addPlatform();
+					moveView();
 					System.out.println(score);
-					
+
 					try {
 						finished(umgebung.getPlayer());
 					} catch (InterruptedException e1) {
@@ -210,7 +203,7 @@ public class DoodleAPP extends JFrame implements Comparable{
 						e1.printStackTrace();
 					}
 
-					
+
 					myOverlay.repaint();
 					}else {
 						switching(closeCommand);
@@ -226,20 +219,7 @@ public class DoodleAPP extends JFrame implements Comparable{
 		KeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventDispatcher(playerDispatcher);
 
 	}
-	public void setMovement(int frames) {
-		umgebung.teleportToBorder();
-		umgebung.moveAll();
-		updatePosition(frames);
-	}
-	public void setPhysics() {
-		jump();
-		addPlatform();	
-	}
-	public void setView() {
-		moveView();
-		updateScoreLabel();
-	}
-	
+
 	public boolean getStatus() {
 		return spielLaeuft;
 	}
@@ -256,9 +236,9 @@ public class DoodleAPP extends JFrame implements Comparable{
 	}
 
 	public void switching(int var){
-		
+
 		switch (var){
-		case 1: 
+		case 1:
 			this.dispose();
 			break;
 		case 2: System.exit(1);
@@ -326,15 +306,17 @@ public class DoodleAPP extends JFrame implements Comparable{
 
 
 	public void moveView() {
+		boolean test = true;
 		if (umgebung.getPlayer().getPoint().y < 250) {
 			for( DoodleObject o : umgebung.getObjects()){
 				if(!o.equals(umgebung.getPlayer())) {
+					System.out.println("runter");
 					o.setSpeed(moveUpSpeed());
 					if(umgebung.getPlayer().getPoint().y < 70) {
 						umgebung.getPlayer().setSpeed(5);
 						o.setSpeed(4);
 					}
-					
+
 				}
 			}
 		}
@@ -343,13 +325,13 @@ public class DoodleAPP extends JFrame implements Comparable{
 				if(!o.equals(umgebung.getPlayer())) o.setSpeed(0);
 			}
 		}
-		if (umgebung.getPlayer().getPoint().y < 0) 
+		if (umgebung.getPlayer().getPoint().y < 0)
 			for( DoodleObject o : umgebung.getObjects()){
-				if(!o.equals(umgebung.getPlayer())) o.setSpeed(10); 
+				if(!o.equals(umgebung.getPlayer())) o.setSpeed(10);
 			}
 		if (umgebung.getPlayer().getPoint().y <20) umgebung.getPlayer().setSpeed(0);
-		
-		
+
+
 //		if (umgebung.getPlayer().point.y <= 200 && engine.gleich == false){
 //			for( DoodleObject o : umgebung.getObjects()){
 //				if(!o.equals(umgebung.getPlayer()))
@@ -372,31 +354,24 @@ public class DoodleAPP extends JFrame implements Comparable{
 			return ausgangSpeed;
 		}
 		else return 0;
-		
-		
+
+
 	}
 
 
-	
-	public void scorePositionAnpassung() {
-		
-		System.out.println(scorePosition + "Score Anpassung");
-		scorePosition =((umgebung.getObjectSpeed())+scorePosition);
-		
-	}
-	
 
-	
+	public void abstandsAnpassung() {
+		if(engine.gleich == false) {
+//			System.out.println(umgebung.getObjectSpeed());
+			umgebung.setAbstand((umgebung.getObjectSpeed())+umgebung.getAbstand());
+		}
+	}
+
 
 	@Override
 	public int compareTo(Object o) {
 		// TODO Auto-generated method stub
 		return 0;
-	}
-	public void updateScoreLabel() {
-
-		scoreLabel.setText(String.valueOf(score));
-		panel.repaint();
 	}
 
 }

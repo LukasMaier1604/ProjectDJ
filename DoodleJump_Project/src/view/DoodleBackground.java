@@ -35,7 +35,7 @@ public class DoodleBackground{
 		objects = new ArrayList<>();
 		bottomPoint = new Point(0,height);
 		//f�r die Startposition
-		player = new DoodlePlayer( new Point(width/2, height- height/4), 70, 70, "Doodle");
+		player = new DoodlePlayer( new Point(width/2 -30, height/2-40), 70, 70, "Doodle");
 		objects.add(player);
 	}
 
@@ -88,7 +88,7 @@ public class DoodleBackground{
 
 
 	public boolean bottomReached(DoodleObject player) {
-		if (player.getPoint().y +player.getHeight() >= this.height) {
+		if (player.getPoint().y >= this.height) {
 			return true;
 		}
 

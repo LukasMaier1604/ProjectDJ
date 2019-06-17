@@ -57,10 +57,6 @@ public class StartMenue extends JFrame {
 		panel.add(panel_1, BorderLayout.CENTER);
 
 		score = new JButton("Highscore");
-		score.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
 		panel_1.add(score);
 
 		panel_2 = new JPanel();

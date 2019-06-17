@@ -32,7 +32,7 @@ public class DoodlePlayer extends DoodleObject{
 	public void move() {
 		if (speed < 50)speed =  (speed +1);
 		try {
-			Thread.sleep(20);
+			Thread.sleep(15);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}

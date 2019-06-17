@@ -2,7 +2,9 @@
 <classpath>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="src" path="DoodleJump_Project/src"/>
+	<classpathentry kind="src" path="DoodleJump-master/DoodleJump-master/doodle jump/src"/>
 	<classpathentry kind="src" path="Images"/>
+	<classpathentry kind="lib" path="DoodleJump-master/DoodleJump-master/doodleJump.jar"/>
 	<classpathentry kind="lib" path="jgoodies-common-1.8.0.jar" sourcepath="jgoodies-common-1.8.0-sources.jar"/>
 	<classpathentry kind="lib" path="jgoodies-forms-1.8.0.jar" sourcepath="jgoodies-forms-1.8.0-sources.jar"/>
 	<classpathentry kind="output" path="DoodleJump_Project/bin"/>
