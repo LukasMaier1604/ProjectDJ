@@ -13,6 +13,7 @@ import java.awt.event.ActionListener;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Writer;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.awt.event.ActionEvent;
@@ -125,7 +126,7 @@ public class Closingclass extends JFrame {
 	
 	public void exit() {							
 		finalStatusScore();
-		this.dispose();
+		dispose();
 	}
 	
 	public void finalStatusScore() {				
@@ -134,29 +135,18 @@ public class Closingclass extends JFrame {
 		temp.put(app.returnSM().getTextFromField(), app.getScore());
 	
 		Map<String, Integer> vergleich = app.getSpielstand().dontDoIt();
-		if(vergleich == null) {
-			vergleich = new HashMap<String, Integer>();
+		if(vergleich == null || vergleich.size() < 5) {
 			vergleich.putAll(temp);
-		}else if (vergleich.size() > 4) {
-			vergleich.clear();
+			temp = app.getSpielstand().sortiereHashMap(vergleich);
+		}if (vergleich.size() ==5) {
+//			vergleich.forEach((k, v) ->{
 			vergleich.putAll(temp);
-		}else {
-			vergleich.putAll(temp);
+			temp = app.getSpielstand().sortiereHashMap(vergleich);
 		}
 		
-//	vergleich.forEach((k, v) ->{
-//		
-//		for(Map.Entry<String, Integer> entry : vergleich.entrySet()) {
-//			if(temp.get(app.returnSM().getTextFromField()) > entry.getValue() && vergleich.size() == 5) {
-//				vergleich.remove(entry.getKey(), entry.getValue());
-//				vergleich.putAll(temp);
-//			}if(vergleich.size() < 5){
-//				vergleich.putAll(temp);
-//			}
-			
-		writeScore(vergleich);
+		writeScore(temp);										// bald unnötig?
 		}
-		
+
 
 	
 	public void writeScore(Map<String, Integer> map) {

@@ -70,5 +70,29 @@ public class Spielstand implements Serializable{
 		return null;
 
 	}
-} 	 
+
+	public Map<String, Integer> sortiereHashMap(Map<String, Integer> map){
+		
+		Object[] files = map.keySet().toArray();
+		Map<String, Integer> var= new HashMap<>();
+		
+		map.values();										//das könnte die lösung sein
+		
+		
+		for(int i=1; i<map.size(); i++) {
+			for(int j=0; j<map.size() - 1; j++) {
+				if(map.get(files[j])>map.get(files[j+1])) {
+					var.put(String.valueOf(files[j]), map.get(files[j]));
+					map.remove(String.valueOf(files[j]), map.get(files[j]));
+					System.out.println(String.valueOf(files[j]));
+					map.putAll(var);
+				}
+			}
+		}
+		if(map.size() >5 ) {
+			map.remove(String.valueOf(files[5]));
+		}
+		return map;
+	}
+}	
 
