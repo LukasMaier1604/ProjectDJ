@@ -14,6 +14,7 @@ import javax.swing.border.EmptyBorder;
 
 import controller.DoodleKeyEventDispatcher;
 import controller.Engine;
+import controller.TcpClient;
 import game.Closingclass;
 import game.Spielstand;
 import game.StartMenue;
@@ -288,6 +289,7 @@ public class DoodleAPP extends JFrame implements Comparable{
 
 		if(umgebung.bottomReached(player))
 		{
+			TcpClient.serverLog(menue.getTextFromField(),score);
 			spielLaeuft = false;
 
 //			int choice = JOptionPane.showConfirmDialog(null, "Game Over. Wohingenau?", "Game Over",JOptionPane.YES_NO_CANCEL_OPTION);
