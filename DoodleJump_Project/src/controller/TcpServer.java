@@ -2,11 +2,15 @@ package controller;
 
 import java.io.*;
 import java.net.*;
+import java.sql.*;
+import java.util.Calendar;
 import java.util.HashMap;
 
 import game.Closingclass;
 
+
 public class TcpServer {
+	private static Calendar cal = Calendar.getInstance();
 	public static void main(String[] args) {
 
 //		HashMap <Integer,String>spielstand = Closingclass.getMap();
@@ -17,7 +21,7 @@ public class TcpServer {
 
 		try (ServerSocket server = new ServerSocket(port)){
 
-			System.out.println("Server gestartet!");
+			System.out.println("Server gestartet!  Datum: " + cal.get(Calendar.DAY_OF_MONTH)+"."+ cal.get(Calendar.MONTH)+"."+cal.get(Calendar.YEAR) );
 
 			while (true) {
 
@@ -31,7 +35,7 @@ public class TcpServer {
 					String line = socketIn.readLine();
 					
 				
-					System.out.println(line);
+					System.out.println(line +"      um "+ cal.get( Calendar.HOUR ) + ":" +cal.get( Calendar.MINUTE ) + " Uhr" );
 //						socketOut.println(spielstand.get(score));
 
 

@@ -14,7 +14,6 @@ import javax.swing.border.EmptyBorder;
 
 import controller.DoodleKeyEventDispatcher;
 import controller.Engine;
-import controller.TcpClient;
 import game.Closingclass;
 import game.Spielstand;
 import game.StartMenue;
@@ -33,6 +32,10 @@ import java.util.ArrayList;
 import java.util.TreeSet;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
+
+import java.io.*;
+import java.net.*;
+
 
 public class DoodleAPP extends JFrame implements Comparable{
 
@@ -289,7 +292,7 @@ public class DoodleAPP extends JFrame implements Comparable{
 
 		if(umgebung.bottomReached(player))
 		{
-			TcpClient.serverLog(menue.getTextFromField(),score);
+			serverLog(menue.getTextFromField(),score);
 			spielLaeuft = false;
 
 //			int choice = JOptionPane.showConfirmDialog(null, "Game Over. Wohingenau?", "Game Over",JOptionPane.YES_NO_CANCEL_OPTION);
@@ -302,6 +305,9 @@ public class DoodleAPP extends JFrame implements Comparable{
 			}catch(Exception o) {
 				o.printStackTrace();
 		}
+			
+			
+			
 
 
 
@@ -330,6 +336,29 @@ public class DoodleAPP extends JFrame implements Comparable{
 //
 //			cc.setVisible(true);
 		}
+	}
+	public  void serverLog(String player, int score) {
+		String hostName = "localhost";
+		int port = 4711;
+		
+		
+		try (Socket socket = new Socket(hostName, port)){
+			BufferedReader socketIn = new BufferedReader(new InputStreamReader(socket.getInputStream())); 
+			PrintWriter socketOut = new PrintWriter(socket.getOutputStream(), true); 
+			
+			
+		
+			socketOut.println("Der Spieler: " + player +" hat einen Score von "+ score+ " Punkten erreicht" );		
+
+		} 
+		catch (UnknownHostException ue) {
+			System.out.println("Kein DNS-Eintrag fuer " + hostName);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+			
 	}
 
 
