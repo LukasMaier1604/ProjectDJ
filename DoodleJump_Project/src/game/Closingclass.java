@@ -130,28 +130,19 @@ public class Closingclass extends JFrame {
 	}
 	
 	public void finalStatusScore() {				
-		
-		Map<String, Integer> temp = new HashMap<>();
-		temp.put(app.returnSM().getTextFromField(), app.getScore());
-	
+		String tempName = app.returnSM().getTextFromField();
+		int tempScore = app.getScore();
 		Map<String, Integer> vergleich = app.getSpielstand().dontDoIt();
-		if(vergleich == null || vergleich.size() < 5) {
-			vergleich.putAll(temp);
-			temp = app.getSpielstand().sortiereHashMap(vergleich);
-		}if (vergleich.size() ==5) {
-//			vergleich.forEach((k, v) ->{
-			vergleich.putAll(temp);
-			temp = app.getSpielstand().sortiereHashMap(vergleich);
-		}
 		
-		writeScore(temp);										// bald unnötig?
+		if(vergleich.containsKey(tempName)) {
+			if(vergleich.get(tempName) < tempScore) {
+			vergleich.put(tempName, tempScore);	
+			}
+		}else {
+			vergleich.put(tempName, tempScore);
 		}
 
-
-	
-	public void writeScore(Map<String, Integer> map) {
-		
-		app.getSpielstand().doIt(map);
-		
+		app.getSpielstand().doIt(vergleich);
 	}
+
 }

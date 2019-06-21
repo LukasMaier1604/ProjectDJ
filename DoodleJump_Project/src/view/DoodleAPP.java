@@ -274,13 +274,6 @@ public class DoodleAPP extends JFrame implements Comparable{
 		case 2: System.exit(1);
 			break;
 		case 3:
-//			this.dispose();
-//			try {
-//				DoodleAPP appNeu = new DoodleAPP();
-//				appNeu.setVisible(true);
-//				}catch(Exception o) {
-//					o.printStackTrace();
-//				};
 			break;
 		default:;
 					}
@@ -294,11 +287,6 @@ public class DoodleAPP extends JFrame implements Comparable{
 		{
 			serverLog(menue.getTextFromField(),score);
 			spielLaeuft = false;
-
-//			int choice = JOptionPane.showConfirmDialog(null, "Game Over. Wohingenau?", "Game Over",JOptionPane.YES_NO_CANCEL_OPTION);
-//			System.out.println(choice);
-//
-
 			try {
 				cc = new Closingclass(this);
 				cc.setVisible(true);
