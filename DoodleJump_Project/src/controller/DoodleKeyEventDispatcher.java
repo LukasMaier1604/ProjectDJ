@@ -14,7 +14,6 @@ public class DoodleKeyEventDispatcher implements KeyEventDispatcher {
 
 	@Override
 	public boolean dispatchKeyEvent(KeyEvent e) {
-		System.out.println("KeyPressed: " + e.getKeyCode());
 		if(e.getID() == KeyEvent.KEY_PRESSED) {
 			if(!keysPressed.contains(e.getKeyCode())) {
 				keysPressed.add(e.getKeyCode());

@@ -7,6 +7,7 @@ import javax.swing.JButton;
 import javax.swing.BoxLayout;
 import java.awt.event.ActionListener;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextArea;
 import java.awt.Font;
@@ -113,14 +114,25 @@ public class Closingclass extends JFrame {
 		int tempScore = app.getScore();
 		Map<String, Integer> vergleich = app.getSpielstand().readScores();
 		
-		if(vergleich.containsKey(tempName)) {
+		if(vergleich.size() < 5){
+			vergleich.put(tempName, tempScore);
+		}else if(vergleich.containsKey(tempName)) {
 			if(vergleich.get(tempName) < tempScore) {
-			vergleich.put(tempName, tempScore);	
+				vergleich.put(tempName, tempScore);	
 			}
 		}else {
+			String localkey = null;
+			int i = 10000;
+			for(Entry<String, Integer> entry : vergleich.entrySet()) {
+				if(entry.getValue() < i) {
+					i=entry.getValue();
+					localkey = entry.getKey();
+				}
+			}
+			vergleich.remove(localkey, i);
 			vergleich.put(tempName, tempScore);
 		}
-
+		
 		app.getSpielstand().writeScores(vergleich);
 	}
 
