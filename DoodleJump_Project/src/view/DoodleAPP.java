@@ -298,8 +298,6 @@ public class DoodleAPP extends JFrame{
 	}
 
 	public void scorePositionAnpassung() {								//Damit der Player nicht doppelt Punkte bekommt, wenn er nach unten fällt und wieder nach oben geht
-
-		System.out.println(scorePosition + "Score Anpassung");
 		scorePosition =((umgebung.getObjectSpeed())+scorePosition);
 	}
 
