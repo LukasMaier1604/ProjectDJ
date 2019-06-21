@@ -273,15 +273,11 @@ public class DoodleAPP extends JFrame implements Comparable{
 			break;
 		case 2: System.exit(1);
 			break;
-		case 3:
-			break;
 		default:;
-					}
-
+		}
+		
 	}
-
 	public void finished(DoodlePlayer player) throws InterruptedException {
-
 
 		if(umgebung.bottomReached(player))
 		{
@@ -293,36 +289,7 @@ public class DoodleAPP extends JFrame implements Comparable{
 			}catch(Exception o) {
 				o.printStackTrace();
 		}
-			
-			
-			
 
-
-
-
-
-
-
-
-
-//			this.addWindowListener(new WindowAdapter(){
-//
-//				@Override
-//				public void windowClosing(WindowEvent e) {
-//
-//						cc = new Closingclass();
-//						int result = JOptionPane.showConfirmDialog(
-//						           cc,
-//						            "Spiel beendet. Zur�ck zum Hauptmen�",
-//						            "Exit Application",
-//						            JOptionPane.YES_NO_OPTION);
-//
-//						if (result == JOptionPane.YES_OPTION)
-//				            cc.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//						}
-//				});
-//
-//			cc.setVisible(true);
 		}
 	}
 	public  void serverLog(String player, int score) {
@@ -342,13 +309,9 @@ public class DoodleAPP extends JFrame implements Comparable{
 		catch (UnknownHostException ue) {
 			System.out.println("Kein DNS-Eintrag fuer " + hostName);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
-			
 	}
-
 
 	public void moveView() {
 		if (umgebung.getPlayer().getPoint().y < 250) {

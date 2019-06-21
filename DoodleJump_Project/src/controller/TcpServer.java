@@ -13,10 +13,6 @@ public class TcpServer {
 	private static Calendar cal = Calendar.getInstance();
 	public static void main(String[] args) {
 
-//		HashMap <Integer,String>spielstand = Closingclass.getMap();
-
-
-
 		int port = 4711; // Port-Nummer
 
 		try (ServerSocket server = new ServerSocket(port)){
@@ -37,13 +33,8 @@ public class TcpServer {
 				
 					System.out.println(line +"      um "+ cal.get( Calendar.HOUR ) + ":" +cal.get( Calendar.MINUTE ) + " Uhr" );
 //						socketOut.println(spielstand.get(score));
-
-
-
-
 				}
-		}
-			
+			}
 		}catch (IOException e) {
 			System.err.println(e.getMessage());
 			e.printStackTrace();

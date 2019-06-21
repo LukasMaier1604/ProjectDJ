@@ -113,15 +113,15 @@ public class Closingclass extends JFrame {
 
 	});
 
-		retry.addActionListener(new ActionListener(){
-
-			@Override
-			public void actionPerformed(ActionEvent e){
-
-				app.setcloseCommand(3);
-				exit();
-			}
-		});
+//		retry.addActionListener(new ActionListener(){
+//
+//			@Override
+//			public void actionPerformed(ActionEvent e){
+//
+//				app.setcloseCommand(3);
+//				exit();
+//			}
+//		});
 }
 	
 	public void exit() {							
@@ -132,7 +132,7 @@ public class Closingclass extends JFrame {
 	public void finalStatusScore() {				
 		String tempName = app.returnSM().getTextFromField();
 		int tempScore = app.getScore();
-		Map<String, Integer> vergleich = app.getSpielstand().dontDoIt();
+		Map<String, Integer> vergleich = app.getSpielstand().readScores();
 		
 		if(vergleich.containsKey(tempName)) {
 			if(vergleich.get(tempName) < tempScore) {
@@ -142,7 +142,7 @@ public class Closingclass extends JFrame {
 			vergleich.put(tempName, tempScore);
 		}
 
-		app.getSpielstand().doIt(vergleich);
+		app.getSpielstand().writeScores(vergleich);
 	}
 
 }

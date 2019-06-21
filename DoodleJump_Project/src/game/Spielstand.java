@@ -29,7 +29,7 @@ public class Spielstand implements Serializable{
 		return highscore;
 	}
 
-	public void doIt(Map<String, Integer> finalScores) {
+	public void writeScores(Map<String, Integer> finalScores) {
 		try (FileOutputStream file = new FileOutputStream(new File(System.getProperty("user.home") + "\\ScoreList.ser"));
 			ObjectOutputStream objOutputStream = new ObjectOutputStream(file);) {
 			objOutputStream.writeObject(finalScores);
@@ -39,7 +39,7 @@ public class Spielstand implements Serializable{
 	}
 
 	@SuppressWarnings("unchecked")
-	public Map<String, Integer> dontDoIt() {
+	public Map<String, Integer> readScores() {
 		try (FileInputStream fileInput = new FileInputStream(
 				new File(System.getProperty("user.home") + "\\ScoreList.ser"));
 				ObjectInputStream objInputstream = new ObjectInputStream(fileInput)) {
@@ -57,9 +57,5 @@ public class Spielstand implements Serializable{
 		return null;
 
 	}
-
-//	public void sortiereHashMap(String s, int score){
-//	}
-
 }	
 

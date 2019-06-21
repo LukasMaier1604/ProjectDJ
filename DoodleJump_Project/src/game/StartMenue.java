@@ -29,6 +29,10 @@ import java.awt.Button;
 import com.jgoodies.forms.factories.DefaultComponentFactory;
 
 import view.DoodleAPP;
+import java.awt.Font;
+import java.awt.GridBagLayout;
+import java.awt.GridBagConstraints;
+import java.awt.Insets;
 
 public class StartMenue extends JFrame {
 
@@ -65,18 +69,18 @@ public class StartMenue extends JFrame {
 		panel_1.add(score);
 
 		panel_2 = new JPanel();
-		FlowLayout flowLayout_1 = (FlowLayout) panel_2.getLayout();
-		flowLayout_1.setAlignment(FlowLayout.LEFT);
 		panel.add(panel_2, BorderLayout.NORTH);
-
-		start = new JButton("NEW GAME");
-		panel_2.add(start);
-
-		txtPlayer = new JTextField();
-		txtPlayer.setHorizontalAlignment(SwingConstants.RIGHT);
-		txtPlayer.setText("PlayerName");
-		panel_2.add(txtPlayer);
-		txtPlayer.setColumns(10);
+				panel_2.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+		
+				start = new JButton("NEW GAME");
+				panel_2.add(start);
+		
+				txtPlayer = new JTextField();
+				txtPlayer.setFont(new Font("Bahnschrift", Font.PLAIN, 14));
+				txtPlayer.setHorizontalAlignment(SwingConstants.RIGHT);
+				txtPlayer.setText("PlayerName");
+				panel_2.add(txtPlayer);
+				txtPlayer.setColumns(10);
 
 		panel_3 = new JPanel();
 		panel.add(panel_3, BorderLayout.SOUTH);
@@ -84,6 +88,7 @@ public class StartMenue extends JFrame {
 
 		button_2 = new JButton("Save Score");
 		panel_3.add(button_2);
+		button_2.setEnabled(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 
@@ -129,35 +134,7 @@ public class StartMenue extends JFrame {
 	public StartMenue returnMe() {
 		return this;
 	}
-//	public String inputScore() {
-//
-//		Reader input = null;
-//		String score = "";
-//		
-//		try {
-//			input= new FileReader("score.txt");
-//			for(int v; (v = input.read()) != -1;) {
-//				System.out.println((char) v);
-//				score += (char) v;
-//			}
-//		} catch (IOException e) {
-//			// TODO Auto-generated catch block
-////			e.printStackTrace();
-//			return "0";
-//		}
-//		try {
-//			input.close();
-//		} catch (IOException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		return score;
-//	}
-	
-//	public void updateScore(String wert) {
-//		txtScore.setText(wert);
-//	}
-//	
+
 	public String getTextFromField() {
 		return txtPlayer.getText();
 	}
