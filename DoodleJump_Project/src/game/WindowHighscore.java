@@ -29,7 +29,7 @@ public class WindowHighscore extends JFrame{
 		panel.setBackground(Color.LIGHT_GRAY);
 		getContentPane().add(panel, BorderLayout.CENTER);
 		panel.setLayout(new BorderLayout(0, 0));
-		setBounds(5, 5, 183,277);
+		setBounds(5, 5, 183,289);
 		setTitle("HighScores");
 		
 		panel_1 = new JPanel();
@@ -38,6 +38,7 @@ public class WindowHighscore extends JFrame{
 		panel_1.setLayout(new BoxLayout(panel_1, BoxLayout.X_AXIS));
 		
 		headline= new JTextField();
+		headline.setFont(new Font("Arial Black", Font.BOLD, 14));
 		headline.setHorizontalAlignment(SwingConstants.LEFT);
 		panel_1.add(headline);
 		headline.setColumns(10);
@@ -54,7 +55,8 @@ public class WindowHighscore extends JFrame{
 		panel.add(panel_3, BorderLayout.NORTH);
 		
 		text = new JTextArea();
-		text.setFont(new Font("Dubai", Font.BOLD, 18));
+		text.setTabSize(5);
+		text.setFont(new Font("Dubai", Font.BOLD, 16));
 		text.setWrapStyleWord(true);
 		text.setColumns(5);
 		text.setRows(5);
