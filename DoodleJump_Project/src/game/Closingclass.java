@@ -36,7 +36,7 @@ public class Closingclass extends JFrame {
 		JPanel panel_1 = new JPanel();
 		panel.add(panel_1, BorderLayout.NORTH);
 		
-		textArea = new JTextArea("Game Over. Wohingenau?");
+		textArea = new JTextArea("Game Over.");
 		textArea.setFont(new Font("Monospaced", Font.PLAIN, 23));
 		panel_1.add(textArea);
 
