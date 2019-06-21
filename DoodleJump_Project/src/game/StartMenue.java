@@ -46,7 +46,7 @@ public class StartMenue extends JFrame {
 	private JTextField txtPlayer, textField;
 
 
-	public StartMenue(DoodleAPP app) {
+	public StartMenue() {
 		setTitle("DoodleJump Startmen\u00FC\r\n");
 		setBounds(10, 10, 389, 171);
 		getContentPane().setBackground(Color.WHITE);
@@ -90,7 +90,6 @@ public class StartMenue extends JFrame {
 		panel_3.add(button_2);
 		button_2.setEnabled(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
 
 		gameStart();
 		showScores();
