@@ -1,6 +1,6 @@
 # ProjectDJ
 ------------
-Doodle Jump using Java Swing<br>
+DoodleJump unter Verwendung von Java Swing<br>
 
 
 #Agenda
@@ -8,7 +8,7 @@ Doodle Jump using Java Swing<br>
 
 * Einfuehrung
 * Anforderungen
-* Steuerung
+* Anleitung
 * Kontakt
 
 
@@ -22,14 +22,20 @@ Die Entwickler dieses Program sind:
 
 #Anforderungen
 -------------
-Um die App DoodleJump zu starten benÃ¶tigen Sie alle Ordner/Pakete mit den jeweiligen Klassen/Bilder aus dem Ordner DoodleJump_Project.<br>
+Um die App DoodleJump zu starten benoetigen Sie alle Ordner/Pakete mit den jeweiligen Klassen/Bilder aus dem Ordner DoodleJump_Project.<br>
 Diese sollten Sie am besten lokal auf ihrem Computer Speichern.<br>
-Um das Spiel zu starten sollten Sie die Klasse App ausfuehren.<br>
-#Steuerung
+Bevor Sie das Hauptspiel starten, müssen Sie die Klasse TcpServer ausführe um den lokalen Server zu starten. Dieser gibt ihnen jedes Spielergebnis in der Konsole aus. <br>
+Um das Spiel zu starten muessen Sie die Klasse App ausfuehren.<br>
+
+#Anleitung
 -------------
 Nachdem Sie die App ausgefuert haben befinden Sie sich in dem Hauptmenue des Spiels. Hier haben Sie verschiedene Optionen:
 1.	Durch Klicken auf den Button "NEW GAME" wird ein neues Spiel gestartet.
 2.	In dem Feld neben dem Button "NEW GAME" koennen Sie ihren Namen eintragen. Unter diesem Namen wird spaeter ihr Highscore gespeichert.
+3.	Mit dem Button "Highscore" könne sie die bisher aufgestellten lokalen Highscores aufrufen.
+4.	Wenn sie ein neues Spiel gestartet haben können Sie ihren Spieler mit der linken und rechten Pfeiltaste steuern
+5.	Sollten Sie am Boden ankommen oeffnet sich das Game-Over Fenster, Hier können sie zum Hauptmenue oder das Programm beenden.
+6.	Viel Spaß beim Spielen  
 
 <br>
 

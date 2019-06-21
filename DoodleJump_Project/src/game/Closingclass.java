@@ -3,26 +3,14 @@ package game;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import java.awt.BorderLayout;
-import javax.swing.JLayeredPane;
-import javax.swing.JSplitPane;
-import javax.swing.JTextField;
 import javax.swing.JButton;
-import java.awt.GridLayout;
 import javax.swing.BoxLayout;
 import java.awt.event.ActionListener;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.Writer;
-import java.util.Collections;
-import java.util.HashMap;
 import java.util.Map;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextArea;
 import java.awt.Font;
 import javax.swing.SwingConstants;
-import java.awt.FlowLayout;
-import javax.swing.JLabel;
-import com.jgoodies.forms.factories.DefaultComponentFactory;
 
 import view.DoodleAPP;
 
@@ -32,7 +20,6 @@ import java.awt.SystemColor;
 
 public class Closingclass extends JFrame {
 
-	private JPanel contentPane;
 	private JButton yes, no, retry;
 	private DoodleAPP app;
 	private JTextArea textArea;
@@ -113,15 +100,7 @@ public class Closingclass extends JFrame {
 
 	});
 
-//		retry.addActionListener(new ActionListener(){
-//
-//			@Override
-//			public void actionPerformed(ActionEvent e){
-//
-//				app.setcloseCommand(3);
-//				exit();
-//			}
-//		});
+
 }
 	
 	public void exit() {							

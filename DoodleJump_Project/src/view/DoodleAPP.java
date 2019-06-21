@@ -1,14 +1,11 @@
 package view;
 
-import javax.swing.ImageIcon;
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Frame;
 
 import javax.swing.border.EmptyBorder;
 
@@ -20,30 +17,23 @@ import game.StartMenue;
 import models.DoodleObject;
 import models.DoodlePlayer;
 
-import java.awt.GridLayout;
 import java.awt.KeyboardFocusManager;
-import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
 import java.util.ArrayList;
-import java.util.TreeSet;
-import javax.swing.JTextField;
 import javax.swing.JLabel;
 
 import java.io.*;
 import java.net.*;
 
 
-public class DoodleAPP extends JFrame implements Comparable{
+public class DoodleAPP extends JFrame{
 
 	private JPanel contentPane;
 	private Overlay myOverlay;
 	private DoodleBackground umgebung;
 	private ArrayList<DoodleObject> objects;
-	private ArrayList<DoodleObject> objectsActive = new ArrayList<>();
 	private Engine engine;
 	private int score = 0;
 	private Timer timer;
@@ -64,12 +54,11 @@ public class DoodleAPP extends JFrame implements Comparable{
 		this.menue = menue;
 	}
 
-	public DoodleAPP() {
+	public DoodleAPP() {																// Zentrale Klasse in welcher alle Komponenten zu dem Spiel zusammengefasst werden
 
 		umgebung = new DoodleBackground(350, 800);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-//		contentPane.setBackground(Color.WHITE);
 		getContentPane().add(contentPane, BorderLayout.CENTER);
 		contentPane.setLayout(new BorderLayout(0, 0));
 		JPanel panel_1 = new JPanel();
@@ -82,8 +71,8 @@ public class DoodleAPP extends JFrame implements Comparable{
 		setBounds(10, 10, umgebung.getWidth(), umgebung.getHeight());
 
 
-		myOverlay = new Overlay(umgebung);								//ï¿½hnlich dem Canvas, funktioniert hier noch nicht. bin noch
-		panel_1.add(myOverlay);											//nich sicher ob, dass bei den Plattformen helfen kann.
+		myOverlay = new Overlay(umgebung);								//ï¿½hnlich dem Canvas
+		panel_1.add(myOverlay);											
 
 		panel = new JPanel();
 		contentPane.add(panel, BorderLayout.NORTH);
@@ -93,17 +82,7 @@ public class DoodleAPP extends JFrame implements Comparable{
 
 		scoreLabel = new JLabel("New label");
 		panel.add(scoreLabel);
-																		// dazu: Klasse App kann noch nicht gestartet werden. IMG mï¿½sste da sein
 		this.objects = umgebung.getObjects();
-//		for(int i =0; i<= objects.size(); i++) {
-//			objectsActive.add(objects.get(i));
-//		}
-
-
-//		objectsActive = (ArrayList<DoodleObject>) objects.clone();
-
-//		objectsActive.addAll(objects);
-
 
 		setEngine();
 
@@ -111,18 +90,6 @@ public class DoodleAPP extends JFrame implements Comparable{
 			umgebung.generateStartingPlatform();
 			}
 			this.keyControl();
-
-
-//		umgebung.getConsoleObjects();
-
-//		umgebung.newPlayerPoint(umgebung.newPlayerMoveUp(speed));
-
-
-
-//		addPlatform();
-
-
-
 	}
 	public int getScore() {
 		return score;
@@ -141,9 +108,71 @@ public class DoodleAPP extends JFrame implements Comparable{
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
 	}
+	public void setEngine() {
+		engine = new Engine (this);
 
+	}
+	public ArrayList<DoodleObject> getObjects(){
+		return objects;
+	}
+	
+	public StartMenue returnSM() {
+		return menue;
+	}
+	
+	public void setcloseCommand(int eingabe){
+		closeCommand = eingabe;
+	}
+	
+	public void setMovement(int frames) {
+		umgebung.teleportToBorder();
+		umgebung.moveAll();
+		updatePosition(frames);
+	}
+	public void setPhysics() {
+		jump();
+		addPlatform();
+	}
+	public void setView() {
+		moveView();
+		updateScoreLabel();
+	}
 
+	public boolean getStatus() {
+		return spielLaeuft;
+	}
+	
+	//--------------------------
+	
+	public void keyControl(){
 
+		final int frames =10;
+		timer= new Timer (frames, new ActionListener() {
+
+			@Override
+			public void actionPerformed( ActionEvent e){
+				if(spielLaeuft == true) {
+					setMovement(frames);
+					setPhysics();
+					setView();
+					try {
+						finished(umgebung.getPlayer());
+					} catch (InterruptedException e1) {
+						e1.printStackTrace();
+					}
+					myOverlay.repaint();
+					}else {
+						endingOptions(closeCommand);
+				}
+			}
+		});
+		timer.start();
+		DoodleKeyEventDispatcher playerDispatcher = new DoodleKeyEventDispatcher (keysPressed);
+		KeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventDispatcher(playerDispatcher);
+
+	}
+	
+	//--------------------------
 
 	public boolean jump() {
 
@@ -176,82 +205,8 @@ public class DoodleAPP extends JFrame implements Comparable{
 		}
 	}
 
-	public ArrayList<DoodleObject> getObjects(){
-		return objects;
-	}
-	public void setEngine() {
-		engine = new Engine (this);
-
-	}
-
-	public void updateList() {
-		this.objects = umgebung.getObjects();
-	}
-
 	public void objektSteuern() {
 		keyControl();
-	}
-
-	public StartMenue returnSM() {
-		return menue;
-	}
-
-	public void setcloseCommand(int eingabe){
-		closeCommand = eingabe;
-	}
-
-	public void keyControl(){
-
-		final int frames =10;
-		timer= new Timer (frames, new ActionListener() {
-
-			@Override
-			public void actionPerformed( ActionEvent e){
-				if(spielLaeuft == true) {
-					setMovement(frames);
-					setPhysics();
-					setView();
-					System.out.println(score);
-
-					try {
-						finished(umgebung.getPlayer());
-					} catch (InterruptedException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					}
-
-
-					myOverlay.repaint();
-					}else {
-						switching(closeCommand);
-				}
-			}
-		});
-
-
-		timer.start();
-
-
-		DoodleKeyEventDispatcher playerDispatcher = new DoodleKeyEventDispatcher (keysPressed);
-		KeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventDispatcher(playerDispatcher);
-
-	}
-	public void setMovement(int frames) {
-		umgebung.teleportToBorder();
-		umgebung.moveAll();
-		updatePosition(frames);
-	}
-	public void setPhysics() {
-		jump();
-		addPlatform();
-	}
-	public void setView() {
-		moveView();
-		updateScoreLabel();
-	}
-
-	public boolean getStatus() {
-		return spielLaeuft;
 	}
 
 	public void updatePosition(int frameTime) {
@@ -265,8 +220,7 @@ public class DoodleAPP extends JFrame implements Comparable{
 		}
 	}
 
-	public void switching(int var){
-
+	public void endingOptions(int var){
 		switch (var){
 		case 1:
 			this.dispose();
@@ -277,6 +231,7 @@ public class DoodleAPP extends JFrame implements Comparable{
 		}
 		
 	}
+	
 	public void finished(DoodlePlayer player) throws InterruptedException {
 
 		if(umgebung.bottomReached(player))
@@ -318,7 +273,7 @@ public class DoodleAPP extends JFrame implements Comparable{
 			for( DoodleObject o : umgebung.getObjects()){
 				if(!o.equals(umgebung.getPlayer())) {
 					o.setSpeed(moveUpSpeed());
-					if(umgebung.getPlayer().getPoint().y < 70) {
+					if(umgebung.getPlayer().getPoint().y < 70) {			
 						umgebung.getPlayer().setSpeed(5);
 						o.setSpeed(4);
 					}
@@ -331,28 +286,8 @@ public class DoodleAPP extends JFrame implements Comparable{
 				if(!o.equals(umgebung.getPlayer())) o.setSpeed(0);
 			}
 		}
-		if (umgebung.getPlayer().getPoint().y < 0)
-			for( DoodleObject o : umgebung.getObjects()){
-				if(!o.equals(umgebung.getPlayer())) o.setSpeed(10);
-			}
-		if (umgebung.getPlayer().getPoint().y <20) umgebung.getPlayer().setSpeed(0);
-
-
-//		if (umgebung.getPlayer().point.y <= 200 && engine.gleich == false){
-//			for( DoodleObject o : umgebung.getObjects()){
-//				if(!o.equals(umgebung.getPlayer()))
-//					if(umgebung.getPlayer().getSpeed() <0) o.setSpeed((umgebung.getPlayer().getSpeed())*-1);
-//
-//			}
-//
-//		}
-//		if (umgebung.getPlayer().point.y > 200){
-//			for( DoodleObject o : umgebung.getObjects()){
-//				if(!o.equals(umgebung.getPlayer())) o.setSpeed(0);
-//
-//			}
-//		}
 	}
+	
 	public int moveUpSpeed() {
 		ausgangSpeed = umgebung.getPlayer().getSpeed();
 		if(ausgangSpeed < 0) {
@@ -360,29 +295,15 @@ public class DoodleAPP extends JFrame implements Comparable{
 			return ausgangSpeed;
 		}
 		else return 0;
-
-
 	}
 
-
-
-	public void scorePositionAnpassung() {
+	public void scorePositionAnpassung() {								//Damit der Player nicht doppelt Punkte bekommt, wenn er nach unten fällt und wieder nach oben geht
 
 		System.out.println(scorePosition + "Score Anpassung");
 		scorePosition =((umgebung.getObjectSpeed())+scorePosition);
-
 	}
 
-
-
-
-	@Override
-	public int compareTo(Object o) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
 	public void updateScoreLabel() {
-
 		scoreLabel.setText(String.valueOf(score));
 		panel.repaint();
 	}

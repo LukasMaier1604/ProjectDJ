@@ -3,7 +3,6 @@ package game;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import java.awt.BorderLayout;
-import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Map;
@@ -19,7 +18,6 @@ import java.awt.Color;
 public class WindowHighscore extends JFrame{
 	
 	private Spielstand highPoint;
-	private JPanel contentPane;
 	private JPanel panel, panel_3, panel_2, panel_1;
 	private JButton back;
 	private JTextArea text;

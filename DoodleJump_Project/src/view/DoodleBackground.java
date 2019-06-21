@@ -2,7 +2,6 @@ package view;
 
 import java.awt.Point;
 import java.util.ArrayList;
-import java.util.concurrent.TimeUnit;
 
 import models.DoodleObject;
 import models.DoodlePlatform;
@@ -12,11 +11,9 @@ public class DoodleBackground{
 	private Point bottomPoint;		// Punkt der links-unteren Ecke
 	private int width;
 	private int height;
-	private int speed;
 	private DoodlePlayer player;
 	private ArrayList<DoodleObject> objects;
 	private int yVariable;
-	private int grenze;
 	private int abstand;
 																// zur Darstellung muss der springende Punkt auch in die Liste
 																// einfache if/not-Abfrage f�r die Plattformen sp�ter
@@ -34,8 +31,7 @@ public class DoodleBackground{
 		this.height = height;
 		objects = new ArrayList<>();
 		bottomPoint = new Point(0,height);
-		//f�r die Startposition
-		player = new DoodlePlayer( new Point(width/2, height- height/4), 70, 70, "Doodle");
+		player = new DoodlePlayer( new Point(width/2, height- height/4), 70, 70);  	 //f�r die Startposition
 		objects.add(player);
 	}
 
@@ -62,17 +58,6 @@ public class DoodleBackground{
 		return height;
 	}
 
-	// warum braucht es den Punkt links-unten?
-//	public DoodleBackground(Point bottomPoint, int width, int height, DoodlePlayer player) {
-//
-//		this.bottomPoint = bottomPoint;
-//		this.player = player;
-//		this.width = width;
-//		this.height = height;
-//	}
-
-
-
 	public void teleportToBorder() {
 		Point newPosition;
 		if (player.getPoint().x <= bottomPoint.x) {
@@ -88,7 +73,7 @@ public class DoodleBackground{
 
 
 	public boolean bottomReached(DoodleObject player) {
-		if (player.getPoint().y +player.getHeight() >= this.height) {
+		if ((player.getPoint().y + player.getHeight()) >= bottomPoint.y) {
 			return true;
 		}
 

@@ -22,12 +22,13 @@ public class Engine {
 	
 	public boolean checkCollision(ArrayList<DoodleObject> objects) {
 		for(DoodleObject object : objects) {
-			if(((player.getPoint().y + player.getHeight() >= (object.getPoint().y +object.getHeight() -8 )
-					&& player.getPoint().y <= (object.getPoint().y ))		
-					&& !object.equals(player))
-					&& ((player.getPoint().x + player.getWidth()) > object.getPoint().x			//X Achse
-					&& player.getPoint().x < (object.getPoint().x + object.getWidth()))&& player.getSpeed()>0) {
-				if (object.equals(aktuel)) gleich = true;
+			if(((player.getPoint().y + player.getHeight() >= (object.getPoint().y +object.getHeight() -8 )	//Y Achsen Kollisionsüberprüfung
+					&& player.getPoint().y <= (object.getPoint().y ))							 
+					&& !object.equals(player))																// Damit keine nur die Platformen überprüft werden
+					&& ((player.getPoint().x + player.getWidth()) > object.getPoint().x						//X Achsen Kollisionsüberprüfung 
+					&& player.getPoint().x < (object.getPoint().x + object.getWidth()))
+					&& player.getSpeed()>0) {  																//nur beim "runterfallen" 
+				if (object.equals(aktuel)) gleich = true;													// boolean gleich überprüft ob Player auf die selbe Platform springt
 				if (!object.equals(aktuel)) gleich = false;
 				aktuel = object;
 				return true;

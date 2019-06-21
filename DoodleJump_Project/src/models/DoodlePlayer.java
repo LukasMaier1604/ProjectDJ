@@ -6,12 +6,12 @@ public class DoodlePlayer extends DoodleObject{
 
 	private int speed = -14;
 	private double force = 1;
-	private String name;
 
 
-	public DoodlePlayer (Point point, int width, int height, String name) {
+
+	public DoodlePlayer (Point point, int width, int height) {
 		super (point,width,height,"Images/player_Lebkuchen.png");
-		this.name = name;
+
 
 	}
 

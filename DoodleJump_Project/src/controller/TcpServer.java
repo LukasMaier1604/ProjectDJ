@@ -2,11 +2,8 @@ package controller;
 
 import java.io.*;
 import java.net.*;
-import java.sql.*;
 import java.util.Calendar;
-import java.util.HashMap;
 
-import game.Closingclass;
 
 
 public class TcpServer {
@@ -21,18 +18,16 @@ public class TcpServer {
 
 			while (true) {
 
-				try (Socket socket = server.accept()) { // try-with-resources, Auf Verbindung warten, Methode blockiert
-					// socket.setSoTimeout(5000);
+				try (Socket socket = server.accept()) { 
 
 					BufferedReader socketIn = new BufferedReader(
 							new InputStreamReader(socket.getInputStream()));				 // Inputstream vom Client
-					PrintWriter socketOut = new PrintWriter(socket.getOutputStream(), true); // Outputstream zum Client mit autoflush
+					PrintWriter socketOut = new PrintWriter(socket.getOutputStream(), true); // Outputstream zum Client 
 
 					String line = socketIn.readLine();
 					
 				
-					System.out.println(line +"      um "+ cal.get( Calendar.HOUR ) + ":" +cal.get( Calendar.MINUTE ) + " Uhr" );
-//						socketOut.println(spielstand.get(score));
+					System.out.println(line +"      um "+ cal.get( Calendar.HOUR ) + ":" +cal.get( Calendar.MINUTE ) + " Uhr" ); 	// Ausgabe des Spielstandes nach Game Over siehe DoodleApp Methode serverLog
 				}
 			}
 		}catch (IOException e) {

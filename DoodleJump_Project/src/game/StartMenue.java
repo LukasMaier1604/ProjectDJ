@@ -4,46 +4,28 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JButton;
 import java.awt.BorderLayout;
-import javax.swing.JSplitPane;
-import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import java.awt.GridLayout;
-import javax.swing.JLabel;
 import java.awt.Color;
 import java.awt.FlowLayout;
-import javax.swing.BoxLayout;
 import java.awt.Panel;
 import javax.swing.SwingConstants;
 import java.awt.event.ActionListener;
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
-import java.io.Reader;
 import java.awt.event.ActionEvent;
-import java.awt.Component;
-import java.awt.EventQueue;
 
-import javax.swing.Box;
-import java.awt.Button;
-import com.jgoodies.forms.factories.DefaultComponentFactory;
 
 import view.DoodleAPP;
 import java.awt.Font;
-import java.awt.GridBagLayout;
-import java.awt.GridBagConstraints;
-import java.awt.Insets;
 
 public class StartMenue extends JFrame {
 
 	private DoodleAPP app;
 	private WindowHighscore window;
-	private JPanel contentPane;
 	private JButton start, score, button_2;
 	private JPanel panel_1;
 	private JPanel panel_2;
 	private JPanel panel_3;
-	private JTextField txtPlayer, textField;
+	private JTextField txtPlayer;
 
 
 	public StartMenue() {
